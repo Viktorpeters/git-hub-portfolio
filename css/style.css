@@ -194,6 +194,25 @@ main {
   gap: 22px;
   padding: 72px 0 48px;
   overflow: hidden;
+  --spot-x: 50%;
+  --spot-y: 50%;
+  --spot-opacity: 0;
+}
+/* Cursor-reactive spotlight: a warm glow that follows the mouse,
+   subtly lighting the grid pattern underneath it. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(
+    320px circle at var(--spot-x) var(--spot-y),
+    rgba(181, 101, 46, 0.16),
+    transparent 70%
+  );
+  opacity: var(--spot-opacity);
+  transition: opacity 0.3s var(--ease);
+  pointer-events: none;
 }
 .hero__portrait {
   width: 108px;
@@ -238,79 +257,38 @@ main {
   gap: 10px;
 }
 
-/* Spacetime ball: a small sphere bobbing over the grid, with a
-   shadow "dimple" beneath that grows/shrinks to suggest it's
-   pressing into the patterned background like a weight on a sheet. */
-.hero__space {
-  position: absolute;
-  top: 14%;
-  right: 8%;
-  width: 64px;
-  height: 64px;
-  z-index: 1;
-  pointer-events: none;
-}
-@media (max-width: 700px) {
-  .hero__space {
-    display: none;
-  }
+.btn-icon {
+  display: inline-flex;
 }
 
-.space-ball {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  margin-left: -13px;
-  background: radial-gradient(
-    circle at 32% 28%,
-    var(--accent-soft),
-    var(--accent) 65%,
-    #8a4a1f 100%
-  );
-  animation: ball-bob 3.6s ease-in-out infinite;
+/* Magnetic buttons: JS sets transform on mousemove; CSS just
+   provides the smooth spring-back when the cursor leaves. */
+.magnetic {
+  transition: transform 0.25s var(--ease);
 }
-.space-ball__shadow {
-  position: absolute;
-  left: 50%;
-  bottom: -6px;
-  width: 40px;
-  height: 10px;
-  margin-left: -20px;
-  border-radius: 50%;
-  background: radial-gradient(
-    ellipse,
-    rgba(42, 36, 32, 0.28),
-    rgba(42, 36, 32, 0) 72%
-  );
-  animation: ball-shadow 3.6s ease-in-out infinite;
+
+/* Staggered entrance reveal for hero copy on load */
+.reveal-word {
+  opacity: 0;
+  transform: translateY(14px);
 }
-@keyframes ball-bob {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(30px);
-  }
+.reveal-word--play {
+  animation: reveal-in 0.7s var(--ease) forwards;
 }
-@keyframes ball-shadow {
-  0%,
-  100% {
-    transform: scale(0.7);
-    opacity: 0.55;
-  }
-  50% {
-    transform: scale(1.15);
+@keyframes reveal-in {
+  to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .space-ball,
-  .space-ball__shadow {
+  .reveal-word {
+    opacity: 1;
+    transform: none;
     animation: none;
+  }
+  .hero::before {
+    display: none;
   }
 }
 
