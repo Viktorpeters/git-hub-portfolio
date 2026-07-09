@@ -1,99 +1,46 @@
-// ============================================================
-// Clock (Lagos time display in hero status bar)
-// ============================================================
-function updateClock() {
-  const el = document.getElementById("clock");
-  if (!el) return;
-  const now = new Date();
-  const options = {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: false,
-    timeZone: "Africa/Lagos",
-  };
-  el.textContent = now.toLocaleTimeString("en-GB", options);
-}
-updateClock();
-setInterval(updateClock, 1000);
-
 // Footer year
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 // ============================================================
-// Signal trace: pulse position follows scroll progress
+// Cursor-reactive spotlight over the hero's grid pattern
 // ============================================================
-const tracePulse = document.querySelector(".trace__pulse");
-function updateTrace() {
-  if (!tracePulse) return;
-  const scrollTop = window.scrollY;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = docHeight > 0 ? scrollTop / docHeight : 0;
-  const trackHeight = window.innerHeight;
-  tracePulse.style.top = `${progress * trackHeight}px`;
+const hero = document.getElementById("hero");
+if (hero) {
+  hero.addEventListener("mousemove", (e) => {
+    const rect = hero.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    hero.style.setProperty("--spot-x", `${x}px`);
+    hero.style.setProperty("--spot-y", `${y}px`);
+    hero.style.setProperty("--spot-opacity", "1");
+  });
+  hero.addEventListener("mouseleave", () => {
+    hero.style.setProperty("--spot-opacity", "0");
+  });
 }
-window.addEventListener("scroll", updateTrace, { passive: true });
-updateTrace();
 
 // ============================================================
-// Node nav: scroll spy + click to scroll
+// Magnetic buttons — gently pull toward the cursor when nearby
 // ============================================================
-const navItems = document.querySelectorAll(".nodenav__item");
-const sections = Array.from(navItems).map((item) =>
-  document.getElementById(item.dataset.target),
-);
-
-navItems.forEach((item) => {
-  item.addEventListener("click", () => {
-    const target = document.getElementById(item.dataset.target);
-    if (target) target.scrollIntoView({ behavior: "smooth" });
+document.querySelectorAll(".magnetic").forEach((btn) => {
+  const strength = 0.35;
+  btn.addEventListener("mousemove", (e) => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    btn.style.transform = `translate(${x * strength}px, ${y * strength}px)`;
+  });
+  btn.addEventListener("mouseleave", () => {
+    btn.style.transform = "translate(0, 0)";
   });
 });
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        navItems.forEach((item) => item.classList.remove("is-active"));
-        const active = document.querySelector(
-          `.nodenav__item[data-target="${entry.target.id}"]`,
-        );
-        if (active) active.classList.add("is-active");
-      }
-    });
-  },
-  { rootMargin: "-40% 0px -50% 0px", threshold: 0 },
-);
-
-sections.forEach((section) => {
-  if (section) observer.observe(section);
-});
-
 // ============================================================
-// Scroll reveal for cards, projects, timeline items
+// Staggered entrance reveal for hero text
 // ============================================================
-const revealTargets = document.querySelectorAll(
-  ".card, .project, .timeline__item, .stat",
-);
-revealTargets.forEach((el) => {
-  el.style.opacity = "0";
-  el.style.transform = "translateY(16px)";
-  el.style.transition =
-    "opacity 0.6s cubic-bezier(.22,.61,.36,1), transform 0.6s cubic-bezier(.22,.61,.36,1)";
+const revealEls = document.querySelectorAll(".reveal-word");
+revealEls.forEach((el, i) => {
+  el.style.animationDelay = `${i * 0.12 + 0.1}s`;
+  el.classList.add("reveal-word--play");
 });
-
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = "1";
-        entry.target.style.transform = "translateY(0)";
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.15 },
-);
-
-revealTargets.forEach((el) => revealObserver.observe(el));
