@@ -2,22 +2,40 @@
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-// ============================================================
-// Cursor-reactive spotlight over the hero's grid pattern
-// ============================================================
 const hero = document.getElementById("hero");
+
+// ============================================================
+// Autonomous cursor-style spotlight — wanders the full hero area
+// on its own, starting from the top-left, illuminating whatever
+// text/pattern it passes over. Uses a golden-ratio frequency
+// mismatch between x and y so the path never obviously repeats.
+// ============================================================
 if (hero) {
-  hero.addEventListener("mousemove", (e) => {
-    const rect = hero.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+  let heroWidth = hero.clientWidth;
+  let heroHeight = hero.clientHeight;
+
+  window.addEventListener("resize", () => {
+    heroWidth = hero.clientWidth;
+    heroHeight = hero.clientHeight;
+  });
+
+  const fx = 0.00016; // base angular speed (x axis)
+  const fy = fx * 1.61803399; // golden-ratio speed (y axis) — avoids repeating loops
+
+  function animateSpotlight(t) {
+    const x =
+      heroWidth *
+      (((1 - Math.cos(t * fx)) / 2) * 0.8 +
+        ((1 - Math.cos(t * fx * 2.3)) / 2) * 0.2);
+    const y =
+      heroHeight *
+      (((1 - Math.cos(t * fy)) / 2) * 0.8 +
+        ((1 - Math.cos(t * fy * 2.3)) / 2) * 0.2);
     hero.style.setProperty("--spot-x", `${x}px`);
     hero.style.setProperty("--spot-y", `${y}px`);
-    hero.style.setProperty("--spot-opacity", "1");
-  });
-  hero.addEventListener("mouseleave", () => {
-    hero.style.setProperty("--spot-opacity", "0");
-  });
+    requestAnimationFrame(animateSpotlight);
+  }
+  requestAnimationFrame(animateSpotlight);
 }
 
 // ============================================================
