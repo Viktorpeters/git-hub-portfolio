@@ -129,13 +129,24 @@
 
       <!-- GITHUB CONTRIBUTIONS -->
       <section class="section section--tight">
+        <p class="contrib-label">
+          Live from GitHub — the exact grid from my profile, recolored to match
+          this site
+        </p>
         <img
           class="contrib-img"
           src="https://streak-stats.demolab.com/?user=Viktorpeters&count_private=true&hide_border=true&background=00000000&stroke=D8CDBB&ring=B5652E&fire=B5652E&currStreakLabel=B5652E&sideNums=2A2420&currStreakNum=2A2420&sideLabels=6B6259&dates=8A7F70&font_family=sans-serif"
           alt="Viktor Ajayi GitHub contribution stats"
           loading="lazy"
         />
-        <p class="fine-print">Live from GitHub, including private repos.</p>
+        <div class="contrib-calendar">
+          <img
+            src="https://ghchart.rshah.org/b5652e/Viktorpeters"
+            alt="Viktor Ajayi GitHub contribution calendar"
+            loading="lazy"
+          />
+        </div>
+        <p class="fine-print">Both pulled live, including private repos.</p>
       </section>
 
       <!-- SKILLS -->
@@ -169,11 +180,11 @@
           <div class="skill-group">
             <h3>AI &amp; RAG</h3>
             <ul class="tag-list">
+              <li>Agentic AI systems</li>
               <li>RAG architectures</li>
               <li>Vector DBs (Pinecone, Weaviate)</li>
-              <li>LangChain</li>
-              <li>Claude / GPT-4</li>
-              <li>Open-source LLMs (Llama, Mixtral)</li>
+              <li>Open-source LLMs via Hugging Face (Llama, Mixtral)</li>
+              <li>Claude / GPT-4 (complex reasoning)</li>
             </ul>
           </div>
           <div class="skill-group">
@@ -225,13 +236,16 @@
             <div class="project-card__body">
               <h3>Zélie — AI French Tutor</h3>
               <p>
-                Conversational RAG tutor for TEF/TCF exam prep, grounded in the
-                learner's own progress and a CLB-rubric.
+                An agentic tutor that reasons over multiple steps, not just RAG
+                lookup — grounded in the learner's own progress and a CLB rubric
+                for TEF/TCF prep. Runs on open-source models via Hugging Face to
+                keep inference costs sustainable at scale.
               </p>
               <ul class="tag-list tag-list--sm">
                 <li>NestJS</li>
+                <li>Agentic AI</li>
                 <li>RAG</li>
-                <li>Claude API</li>
+                <li>Open-source LLMs</li>
               </ul>
               <a
                 href="https://frenchwithzelie.io"
@@ -251,12 +265,15 @@
             <div class="project-card__body">
               <h3>Parcel Coast</h3>
               <p>
-                Ecommerce &amp; logistics platform with Chinedu, an AI shopping
-                assistant for product search and order tracking.
+                Ecommerce &amp; logistics platform with Chinedu, a multimodal AI
+                agent — chat to check product availability, or attach a photo of
+                what you're looking for. Backend built in Go for seamless
+                horizontal scaling.
               </p>
               <ul class="tag-list tag-list--sm">
-                <li>AI Assistant</li>
-                <li>Ecommerce</li>
+                <li>Go</li>
+                <li>Agentic AI</li>
+                <li>Multimodal</li>
               </ul>
               <a href="https://parcelcoast.com" target="_blank" rel="noopener"
                 >Visit site →</a
