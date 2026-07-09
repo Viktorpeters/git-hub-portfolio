@@ -20,28 +20,49 @@ const hero = document.getElementById("hero");
 // after images/fonts finish loading and the layout settles.
 // ============================================================
 if (hero) {
-  const fx = 0.00048; // base angular speed (x axis) — faster than before
-  const fy = fx * 1.61803399; // golden-ratio speed (y axis) — avoids repeating loops
-  const fr = fx * 0.7; // independent speed for the glow's size pulse
+  // Glow 1 — larger, slower
+  const fx1 = 0.00048;
+  const fy1 = fx1 * 1.61803399; // golden-ratio mismatch — path never repeats
+  const fr1 = fx1 * 0.7;
+
+  // Glow 2 — smaller, faster, different starting phase
+  const fx2 = 0.00081;
+  const fy2 = fx2 * 1.41421356; // different irrational ratio (√2) so it never syncs with glow 1
+  const fr2 = fx2 * 0.55;
+  const phase2 = 2.4;
 
   function animateSpotlight(t) {
     const w = hero.clientWidth;
     const h = hero.clientHeight;
 
-    const x =
+    // Glow 1
+    const x1 =
       w *
-      (((1 - Math.cos(t * fx)) / 2) * 0.8 +
-        ((1 - Math.cos(t * fx * 2.3)) / 2) * 0.2);
-    const y =
+      (((1 - Math.cos(t * fx1)) / 2) * 0.8 +
+        ((1 - Math.cos(t * fx1 * 2.3)) / 2) * 0.2);
+    const y1 =
       h *
-      (((1 - Math.cos(t * fy)) / 2) * 0.8 +
-        ((1 - Math.cos(t * fy * 2.3)) / 2) * 0.2);
-    // Pulse the glow's size between small (180px) and large (460px)
-    const size = 180 + (460 - 180) * (0.5 + 0.5 * Math.sin(t * fr));
+      (((1 - Math.cos(t * fy1)) / 2) * 0.8 +
+        ((1 - Math.cos(t * fy1 * 2.3)) / 2) * 0.2);
+    const size1 = 250 + (500 - 250) * (0.5 + 0.5 * Math.sin(t * fr1));
 
-    hero.style.setProperty("--spot-x", `${x}px`);
-    hero.style.setProperty("--spot-y", `${y}px`);
-    hero.style.setProperty("--spot-size", `${size}px`);
+    // Glow 2 — starts from a different corner and stays smaller
+    const x2 =
+      w *
+      (((1 - Math.cos(t * fx2 + phase2)) / 2) * 0.8 +
+        ((1 - Math.cos(t * fx2 * 2.1 + phase2)) / 2) * 0.2);
+    const y2 =
+      h *
+      (((1 - Math.cos(t * fy2 + phase2)) / 2) * 0.8 +
+        ((1 - Math.cos(t * fy2 * 2.1 + phase2)) / 2) * 0.2);
+    const size2 = 90 + (220 - 90) * (0.5 + 0.5 * Math.sin(t * fr2 + 1.1));
+
+    hero.style.setProperty("--spot-x", `${x1}px`);
+    hero.style.setProperty("--spot-y", `${y1}px`);
+    hero.style.setProperty("--spot-size", `${size1}px`);
+    hero.style.setProperty("--spot2-x", `${x2}px`);
+    hero.style.setProperty("--spot2-y", `${y2}px`);
+    hero.style.setProperty("--spot2-size", `${size2}px`);
     requestAnimationFrame(animateSpotlight);
   }
   requestAnimationFrame(animateSpotlight);
