@@ -196,17 +196,34 @@ main {
   overflow: hidden;
   --spot-x: 0px;
   --spot-y: 0px;
+  --spot-size: 320px;
+  --spot2-x: 60%;
+  --spot2-y: 70%;
+  --spot2-size: 140px;
 }
-/* Autonomous spotlight: a warm glow that wanders the hero on its
-   own, starting top-left, lighting the grid pattern as it passes. */
+/* Autonomous spotlights: two independent warm glows — one larger,
+   one smaller — that wander the hero on their own, lighting the
+   grid pattern as they pass over it. */
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 0;
   background: radial-gradient(
-    320px circle at var(--spot-x) var(--spot-y),
+    var(--spot-size) circle at var(--spot-x) var(--spot-y),
     rgba(181, 101, 46, 0.16),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(
+    var(--spot2-size) circle at var(--spot2-x) var(--spot2-y),
+    rgba(181, 101, 46, 0.13),
     transparent 70%
   );
   pointer-events: none;
@@ -284,7 +301,8 @@ main {
     transform: none;
     animation: none;
   }
-  .hero::before {
+  .hero::before,
+  .hero::after {
     display: none;
   }
 }
