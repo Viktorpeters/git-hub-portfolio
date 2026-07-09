@@ -194,12 +194,11 @@ main {
   gap: 22px;
   padding: 72px 0 48px;
   overflow: hidden;
-  --spot-x: 50%;
-  --spot-y: 50%;
-  --spot-opacity: 0;
+  --spot-x: 0px;
+  --spot-y: 0px;
 }
-/* Cursor-reactive spotlight: a warm glow that follows the mouse,
-   subtly lighting the grid pattern underneath it. */
+/* Autonomous spotlight: a warm glow that wanders the hero on its
+   own, starting top-left, lighting the grid pattern as it passes. */
 .hero::before {
   content: "";
   position: absolute;
@@ -210,8 +209,6 @@ main {
     rgba(181, 101, 46, 0.16),
     transparent 70%
   );
-  opacity: var(--spot-opacity);
-  transition: opacity 0.3s var(--ease);
   pointer-events: none;
 }
 .hero__portrait {
