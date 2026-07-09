@@ -325,6 +325,24 @@ main {
   width: 480px;
   margin: 0 auto;
 }
+.contrib-label {
+  color: var(--text-dim);
+  font-size: 0.82rem;
+  margin: 0 0 18px;
+}
+.contrib-calendar {
+  margin-top: 28px;
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow-x: auto;
+}
+.contrib-calendar img {
+  width: 100%;
+  min-width: 640px;
+  margin: 0 auto;
+}
 
 /* ============================================================
    SKILLS
