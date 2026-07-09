@@ -38,12 +38,16 @@
     <main id="top">
       <!-- HERO -->
       <section class="hero">
+        <div class="hero__space" aria-hidden="true">
+          <div class="space-ball__shadow"></div>
+          <div class="space-ball"></div>
+        </div>
         <img
           class="hero__portrait"
           src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1765531027/vik-removebg-preview_dnhvan.png"
           alt="Viktor Ajayi"
         />
-        <div>
+        <div class="hero__copy">
           <p class="eyebrow">Software Engineer · Backend &amp; AI Systems</p>
           <h1 class="hero__title">Viktor Ajayi</h1>
           <p class="hero__sub">
@@ -142,6 +146,72 @@
       <section id="projects" class="section">
         <h2 class="section__title">Projects</h2>
         <div class="projects">
+          <article class="project-card project-card--logo">
+            <div class="project-card__img-wrap">
+              <img
+                src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1782660457/ca-removebg-preview_zdrvwd.png"
+                alt="Cardly logo"
+                loading="lazy"
+              />
+            </div>
+            <div class="project-card__body">
+              <h3>Cardly</h3>
+              <p>
+                New product currently in build, including a hand-crafted brand
+                identity and wordmark.
+              </p>
+              <ul class="tag-list tag-list--sm">
+                <li>In development</li>
+              </ul>
+              <a href="https://cardly.ng" target="_blank" rel="noopener"
+                >Visit site →</a
+              >
+            </div>
+          </article>
+
+          <article class="project-card">
+            <img
+              src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1782773212/cc_duxaoo.png"
+              alt="Zélie AI French tutor"
+              loading="lazy"
+            />
+            <div class="project-card__body">
+              <h3>Zélie — AI French Tutor</h3>
+              <p>
+                Conversational RAG tutor for TEF/TCF exam prep, grounded in the
+                learner's own progress and a CLB-rubric.
+              </p>
+              <ul class="tag-list tag-list--sm">
+                <li>NestJS</li>
+                <li>RAG</li>
+                <li>Claude API</li>
+              </ul>
+              <a
+                href="https://frenchwithzelie.io"
+                target="_blank"
+                rel="noopener"
+                >Visit site →</a
+              >
+            </div>
+          </article>
+
+          <article class="project-card project-card--text-only">
+            <div class="project-card__body">
+              <h3>Parcel Coast</h3>
+              <p>
+                Ecommerce &amp; logistics platform with Chinedu, an AI shopping
+                assistant for product search and order tracking.
+              </p>
+              <ul class="tag-list tag-list--sm">
+                <li>AI Assistant</li>
+                <li>Ecommerce</li>
+              </ul>
+              <a href="https://parcelcoast.com" target="_blank" rel="noopener"
+                >Visit site →</a
+              >
+            </div>
+          </article>
+
           <article class="project-card">
             <img
               src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1765997742/t1_dznrgp.png"
@@ -189,65 +259,6 @@
                 href="https://mentorship.techfacilitators.com"
                 target="_blank"
                 rel="noopener"
-                >Visit site →</a
-              >
-            </div>
-          </article>
-
-          <article class="project-card">
-            <img
-              src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1781126361/iop_ggircp.png"
-              alt="Zélie AI French tutor"
-              loading="lazy"
-            />
-            <div class="project-card__body">
-              <h3>Zélie — AI French Tutor</h3>
-              <p>
-                Conversational RAG tutor for TEF/TCF exam prep, grounded in the
-                learner's own progress and a CLB-rubric.
-              </p>
-              <ul class="tag-list tag-list--sm">
-                <li>NestJS</li>
-                <li>RAG</li>
-                <li>Claude API</li>
-              </ul>
-              <a
-                href="https://frenchwithzelie.io"
-                target="_blank"
-                rel="noopener"
-                >Visit site →</a
-              >
-            </div>
-          </article>
-
-          <article class="project-card project-card--text-only">
-            <div class="project-card__body">
-              <h3>Parcel Coast</h3>
-              <p>
-                Ecommerce &amp; logistics platform with Chinedu, an AI shopping
-                assistant for product search and order tracking.
-              </p>
-              <ul class="tag-list tag-list--sm">
-                <li>AI Assistant</li>
-                <li>Ecommerce</li>
-              </ul>
-              <a href="https://parcelcoast.com" target="_blank" rel="noopener"
-                >Visit site →</a
-              >
-            </div>
-          </article>
-
-          <article class="project-card project-card--text-only">
-            <div class="project-card__body">
-              <h3>Cardly</h3>
-              <p>
-                New product currently in build, including a hand-crafted brand
-                identity and wordmark.
-              </p>
-              <ul class="tag-list tag-list--sm">
-                <li>In development</li>
-              </ul>
-              <a href="https://cardly.ng" target="_blank" rel="noopener"
                 >Visit site →</a
               >
             </div>
@@ -341,22 +352,69 @@
       <!-- CONTACT -->
       <section id="contact" class="section contact">
         <h2 class="section__title">Contact</h2>
+
+        <a href="tel:+2348143324603" class="phone-chip">
+          <span class="phone-icon">
+            <svg
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.5 21 3 13.5 3 4.7c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+          <span>+234 814 332 4603</span>
+        </a>
+
         <a href="mailto:victorajayidamilare@gmail.com" class="contact__email"
           >victorajayidamilare@gmail.com</a
         >
+
         <div class="contact__links">
           <a
             href="https://github.com/Viktorpeters"
             target="_blank"
             rel="noopener"
-            >github.com/Viktorpeters</a
+            class="icon-chip"
           >
+            <svg
+              viewBox="0 0 16 16"
+              width="18"
+              height="18"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"
+              />
+            </svg>
+            <span>github.com/Viktorpeters</span>
+          </a>
           <a
             href="https://www.linkedin.com/in/victor-ajayi1"
             target="_blank"
             rel="noopener"
-            >linkedin.com/in/victor-ajayi1</a
+            class="icon-chip"
           >
+            <svg
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="24" height="24" rx="4" fill="#0A66C2" />
+              <path
+                d="M7.3 9.7H4.7V19h2.6V9.7ZM6 5.4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3ZM19.3 19h-2.6v-4.8c0-1.1 0-2.6-1.6-2.6s-1.9 1.2-1.9 2.5V19H10.6V9.7h2.5v1.3h.03c.35-.66 1.2-1.36 2.5-1.36 2.66 0 3.15 1.75 3.15 4.03V19Z"
+                fill="#fff"
+              />
+            </svg>
+            <span>linkedin.com/in/victor-ajayi1</span>
+          </a>
         </div>
       </section>
     </main>
