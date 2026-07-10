@@ -302,7 +302,8 @@ if (document.getElementById("contribGrid")) {
       renderContribGrid(calendar.weeks);
       renderContribTotal(calendar.totalContributions);
     })
-    .catch(() => {
+    .catch((err) => {
+      console.error("Contribution grid fetch failed:", err);
       renderContribError();
     });
 }
