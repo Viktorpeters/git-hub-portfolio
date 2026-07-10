@@ -85,6 +85,7 @@ body {
   font-size: 16px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  position: relative;
 
   /* Warm grid-patterned background */
   background-image:
@@ -111,6 +112,53 @@ img {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
+}
+
+/* ============================================================
+   GLOW LAYER — the two wandering spotlights now live here instead
+   of inside .hero, so they can roam the full topbar + hero area
+   (sized in JS to topbar.offsetHeight + hero.offsetHeight) rather
+   than being boxed into the hero section alone.
+   ============================================================ */
+.glow-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  --spot-x: 0px;
+  --spot-y: 0px;
+  --spot-size: 320px;
+  --spot2-x: 60%;
+  --spot2-y: 70%;
+  --spot2-size: 140px;
+}
+.glow-layer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    var(--spot-size) circle at var(--spot-x) var(--spot-y),
+    rgba(181, 101, 46, 0.16),
+    transparent 70%
+  );
+}
+.glow-layer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    var(--spot2-size) circle at var(--spot2-x) var(--spot2-y),
+    rgba(181, 101, 46, 0.13),
+    transparent 70%
+  );
+}
+@media (prefers-reduced-motion: reduce) {
+  .glow-layer {
+    display: none;
+  }
 }
 
 /* ============================================================
@@ -326,6 +374,8 @@ main {
   max-width: var(--container);
   margin: 0 auto;
   padding: 0 32px;
+  position: relative;
+  z-index: 1;
 }
 .section {
   padding: 64px 0;
@@ -357,46 +407,13 @@ main {
    ============================================================ */
 .hero {
   position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   gap: 22px;
   padding: 72px 0 48px;
-  overflow: hidden;
-  --spot-x: 0px;
-  --spot-y: 0px;
-  --spot-size: 320px;
-  --spot2-x: 60%;
-  --spot2-y: 70%;
-  --spot2-size: 140px;
-}
-/* Autonomous spotlights: two independent warm glows — one larger,
-   one smaller — that wander the hero on their own, lighting the
-   grid pattern as they pass over it. */
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: radial-gradient(
-    var(--spot-size) circle at var(--spot-x) var(--spot-y),
-    rgba(181, 101, 46, 0.16),
-    transparent 70%
-  );
-  pointer-events: none;
-}
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: radial-gradient(
-    var(--spot2-size) circle at var(--spot2-x) var(--spot2-y),
-    rgba(181, 101, 46, 0.13),
-    transparent 70%
-  );
-  pointer-events: none;
 }
 .hero__portrait {
   width: 108px;
@@ -471,10 +488,6 @@ main {
     transform: none;
     animation: none;
   }
-  .hero::before,
-  .hero::after {
-    display: none;
-  }
 }
 
 .btn {
@@ -506,30 +519,32 @@ main {
 }
 
 /* ============================================================
-   GITHUB CONTRIBUTIONS
+   GITHUB CONTRIBUTIONS — real data rendered as an inline SVG grid
+   (see main.js), fetched from a Cloudflare Worker that calls the
+   GitHub GraphQL API server-side.
    ============================================================ */
-.contrib-img {
-  max-width: 100%;
-  width: 480px;
-  margin: 0 auto;
-}
 .contrib-label {
   color: var(--text-dim);
   font-size: 0.82rem;
   margin: 0 0 18px;
 }
-.contrib-calendar {
-  margin-top: 28px;
+.contrib-grid {
+  max-width: 100%;
+  overflow-x: auto;
   padding: 20px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  overflow-x: auto;
 }
-.contrib-calendar img {
-  width: 100%;
-  min-width: 640px;
+.contrib-grid svg {
+  display: block;
   margin: 0 auto;
+}
+.contrib-loading,
+.contrib-error {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  margin: 0;
 }
 
 /* ============================================================
@@ -813,4 +828,6 @@ main {
   padding: 32px;
   color: var(--text-dim);
   font-size: 0.82rem;
+  position: relative;
+  z-index: 1;
 }
