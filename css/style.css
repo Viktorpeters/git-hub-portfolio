@@ -523,22 +523,40 @@ main {
    (see main.js), fetched from a Cloudflare Worker that calls the
    GitHub GraphQL API server-side.
    ============================================================ */
+.contrib-section {
+  max-width: 100%;
+}
 .contrib-label {
   color: var(--text-dim);
   font-size: 0.82rem;
-  margin: 0 0 18px;
+  margin: 0 0 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.contrib-total {
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  font-weight: 900;
+  color: var(--text);
+  margin: 0 0 22px;
+  line-height: 1.1;
+}
+.contrib-total .contrib-total-number {
+  color: var(--accent);
 }
 .contrib-grid {
   max-width: 100%;
   overflow-x: auto;
-  padding: 20px;
+  overflow-y: hidden;
+  padding: 22px;
   background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border: 2px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(42, 36, 32, 0.08);
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 .contrib-grid svg {
   display: block;
-  margin: 0 auto;
 }
 .contrib-loading,
 .contrib-error {
