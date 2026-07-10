@@ -206,6 +206,10 @@ function buildYearGrid(dataMap, year) {
 // Fixed cell size close to GitHub's own graph, just a touch bigger
 // (~1.25x) so it reads as intentional rather than tiny — not scaled
 // up to fill the screen, which is what made it huge before.
+const CONTRIB_CELL = 13;
+const CONTRIB_GAP = 4;
+let lastRawWeeks = null;
+
 const MONTH_ABBR = [
   "Jan",
   "Feb",
@@ -275,7 +279,7 @@ function renderContribGrid(rawWeeks) {
 function renderContribTotal(total) {
   const el = document.getElementById("contribTotal");
   if (!el) return;
-  el.innerHTML = `<span class="contrib-total-number">${total.toLocaleString()}</span> contributions so far in ${new Date().getUTCFullYear()}`;
+  el.innerHTML = `<span class="contrib-total-number">${total.toLocaleString()}</span> contributions as at ${new Date().getUTCFullYear()}`;
 }
 
 function renderContribError() {
