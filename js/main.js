@@ -40,21 +40,26 @@ if (menuBtn) {
 const hero = document.getElementById("hero");
 
 // ============================================================
-// Autonomous cursor-style spotlight — wanders the full hero area
-// on its own, starting from the top-left, illuminating whatever
-// text/pattern it passes over. Uses a golden-ratio frequency
-// mismatch between x and y so the path never obviously repeats.
+// Autonomous cursor-style spotlight — wanders the topbar + hero
+// area on its own, starting from the top-left. Uses a golden-ratio
+// frequency mismatch between x and y so the path never obviously
+// repeats. The glow now lives in its own layer (#glowLayer) sized
+// to cover the topbar AND the hero, instead of being boxed inside
+// the hero section alone — so it can drift behind the nav too.
 // ============================================================
-// ============================================================
-// Autonomous cursor-style spotlight — wanders the full hero area
-// on its own, starting from the top-left, illuminating whatever
-// text/pattern it passes over. Uses a golden-ratio frequency
-// mismatch between x and y so the path never obviously repeats.
-// Hero size is read fresh every frame (not cached) so it always
-// covers the true, current dimensions of the section — including
-// after images/fonts finish loading and the layout settles.
-// ============================================================
-if (hero) {
+const glowLayer = document.getElementById("glowLayer");
+const topbar = document.querySelector(".topbar");
+
+function sizeGlowLayer() {
+  if (glowLayer && topbar && hero) {
+    glowLayer.style.height = topbar.offsetHeight + hero.offsetHeight + "px";
+  }
+}
+window.addEventListener("resize", sizeGlowLayer);
+window.addEventListener("load", sizeGlowLayer);
+sizeGlowLayer();
+
+if (glowLayer) {
   // Each axis uses a SINGLE cosine term — this guarantees the glow
   // actually reaches every corner (0% to 100% of width/height) every
   // cycle. Golden-ratio / sqrt(2) mismatches between x and y keep the
@@ -70,8 +75,8 @@ if (hero) {
   const phase2y = 5.1;
 
   function animateSpotlight(t) {
-    const w = hero.clientWidth;
-    const h = hero.clientHeight;
+    const w = glowLayer.clientWidth;
+    const h = glowLayer.clientHeight;
 
     // Glow 1 — full range guaranteed: (1-cos)/2 always spans exactly 0..1
     const x1 = (w * (1 - Math.cos(t * fx1))) / 2;
@@ -83,12 +88,12 @@ if (hero) {
     const y2 = (h * (1 - Math.cos(t * fy2 + phase2y))) / 2;
     const size2 = 90 + (220 - 90) * (0.5 + 0.5 * Math.sin(t * fr2 + 1.1));
 
-    hero.style.setProperty("--spot-x", `${x1}px`);
-    hero.style.setProperty("--spot-y", `${y1}px`);
-    hero.style.setProperty("--spot-size", `${size1}px`);
-    hero.style.setProperty("--spot2-x", `${x2}px`);
-    hero.style.setProperty("--spot2-y", `${y2}px`);
-    hero.style.setProperty("--spot2-size", `${size2}px`);
+    glowLayer.style.setProperty("--spot-x", `${x1}px`);
+    glowLayer.style.setProperty("--spot-y", `${y1}px`);
+    glowLayer.style.setProperty("--spot-size", `${size1}px`);
+    glowLayer.style.setProperty("--spot2-x", `${x2}px`);
+    glowLayer.style.setProperty("--spot2-y", `${y2}px`);
+    glowLayer.style.setProperty("--spot2-size", `${size2}px`);
     requestAnimationFrame(animateSpotlight);
   }
   requestAnimationFrame(animateSpotlight);
@@ -118,3 +123,149 @@ revealEls.forEach((el, i) => {
   el.style.animationDelay = `${i * 0.12 + 0.1}s`;
   el.classList.add("reveal-word--play");
 });
+
+// ============================================================
+// GitHub contributions — real data, Jan 2026 → present, private
+// repos included. Fetched from a Cloudflare Worker that holds the
+// GitHub token server-side (never exposed here) and returns the
+// GraphQL contributionsCollection response.
+//
+// ============================================================
+const CONTRIB_WORKER_URL =
+  "https://github-contrib-worker.alternativeschool073.workers.dev";
+
+// ---- Helpers to build a full Jan 1 – Dec 31 calendar, independent of
+// how much real data GitHub has given us so far. ----
+
+function pad2(n) {
+  return String(n).padStart(2, "0");
+}
+function toDateStr(d) {
+  return `${d.getUTCFullYear()}-${pad2(d.getUTCMonth() + 1)}-${pad2(d.getUTCDate())}`;
+}
+
+// Flattens the GraphQL weeks/contributionDays shape into a simple
+// { "2026-03-14": { count, color }, ... } lookup.
+function buildDataMap(weeks) {
+  const map = {};
+  weeks.forEach((week) => {
+    week.contributionDays.forEach((day) => {
+      map[day.date] = { count: day.contributionCount, color: day.color };
+    });
+  });
+  return map;
+}
+
+// Builds the full year as an array of weeks (each week = 7 day-cells),
+// aligned Sunday-to-Saturday like GitHub's own graph, so the shape
+// exists for the whole year regardless of what data we actually have.
+// Each cell is one of:
+//   { type: "pad" }                      – outside Jan1–Dec31, just for grid alignment
+//   { type: "future", date }              – inside this year, hasn't happened yet
+//   { type: "data", date, count, color }  – real day, filled from GitHub
+function buildYearGrid(dataMap, year) {
+  const jan1 = new Date(Date.UTC(year, 0, 1));
+  const dec31 = new Date(Date.UTC(year, 11, 31));
+
+  const gridStart = new Date(jan1);
+  gridStart.setUTCDate(jan1.getUTCDate() - jan1.getUTCDay()); // back up to Sunday
+
+  const gridEnd = new Date(dec31);
+  gridEnd.setUTCDate(dec31.getUTCDate() + (6 - dec31.getUTCDay())); // forward to Saturday
+
+  const todayStr = toDateStr(new Date());
+  const weeks = [];
+  let cur = new Date(gridStart);
+
+  while (cur <= gridEnd) {
+    const week = [];
+    for (let i = 0; i < 7; i++) {
+      const dateStr = toDateStr(cur);
+      const inYear = cur.getUTCFullYear() === year;
+
+      if (!inYear) {
+        week.push({ type: "pad" });
+      } else if (dateStr > todayStr) {
+        week.push({ type: "future", date: dateStr });
+      } else {
+        const d = dataMap[dateStr];
+        week.push({
+          type: "data",
+          date: dateStr,
+          count: d ? d.count : 0,
+          color: d ? d.color : "#ebedf0",
+        });
+      }
+      cur.setUTCDate(cur.getUTCDate() + 1);
+    }
+    weeks.push(week);
+  }
+  return weeks;
+}
+
+function renderContribGrid(rawWeeks) {
+  const grid = document.getElementById("contribGrid");
+  if (!grid) return;
+
+  const dataMap = buildDataMap(rawWeeks);
+  const year = new Date().getUTCFullYear();
+  const yearGrid = buildYearGrid(dataMap, year);
+
+  const cell = 12;
+  const gap = 3;
+  const step = cell + gap;
+  const svgW = yearGrid.length * step;
+  const svgH = 7 * step;
+
+  let rects = "";
+  yearGrid.forEach((week, wi) => {
+    week.forEach((day, di) => {
+      const x = wi * step;
+      const y = di * step;
+
+      if (day.type === "pad") {
+        return; // outside the year, leave fully blank for alignment
+      }
+
+      if (day.type === "future") {
+        // Hasn't happened yet — outlined placeholder, not filled.
+        rects += `<rect x="${x}" y="${y}" width="${cell}" height="${cell}" rx="2" fill="none" stroke="#e1d5c2" stroke-width="1"><title>${day.date}: upcoming</title></rect>`;
+        return;
+      }
+
+      const fill = day.count ? day.color : "#e1d5c2";
+      rects += `<rect x="${x}" y="${y}" width="${cell}" height="${cell}" rx="2" fill="${fill}"><title>${day.date}: ${day.count} contribution${day.count === 1 ? "" : "s"}</title></rect>`;
+    });
+  });
+
+  grid.innerHTML = `<svg viewBox="0 0 ${svgW} ${svgH}" width="100%" role="img" aria-label="GitHub contribution grid, January to December ${year}">${rects}</svg>`;
+}
+
+function renderContribError() {
+  const grid = document.getElementById("contribGrid");
+  if (grid) {
+    grid.innerHTML = `<p class="contrib-error">Couldn't load live contribution data right now.</p>`;
+  }
+}
+
+if (document.getElementById("contribGrid")) {
+  fetch(CONTRIB_WORKER_URL)
+    .then((res) => {
+      if (!res.ok) throw new Error("Worker request failed");
+      return res.json();
+    })
+    .then((json) => {
+      const weeks =
+        json &&
+        json.data &&
+        json.data.user &&
+        json.data.user.contributionsCollection &&
+        json.data.user.contributionsCollection.contributionCalendar &&
+        json.data.user.contributionsCollection.contributionCalendar.weeks;
+      if (!weeks) throw new Error("Unexpected response shape");
+      renderContribGrid(weeks);
+    })
+    .catch(() => {
+      renderContribError();
+    });
+}
