@@ -203,16 +203,16 @@ function buildYearGrid(dataMap, year) {
   return weeks;
 }
 
-// How many week-columns should be visible in one "screenful" of the
-// scroller: on narrow screens, ~1 month; on wider screens, ~3 months.
-function getVisibleWeeks() {
-  return window.innerWidth < 700 ? 4.3 : 13;
-}
+// Fixed cell size close to GitHub's own graph, just a touch bigger
+// (~1.25x) so it reads as intentional rather than tiny — not scaled
+// up to fill the screen, which is what made it huge before.
+const CONTRIB_CELL = 13;
+const CONTRIB_GAP = 4;
 
 let lastRawWeeks = null;
 
 function renderContribGrid(rawWeeks) {
-  lastRawWeeks = rawWeeks; // keep so we can re-render cleanly on resize
+  lastRawWeeks = rawWeeks;
   const grid = document.getElementById("contribGrid");
   if (!grid) return;
 
@@ -220,15 +220,7 @@ function renderContribGrid(rawWeeks) {
   const year = new Date().getUTCFullYear();
   const yearGrid = buildYearGrid(dataMap, year);
 
-  // Size cells from the box's own visible width, so exactly
-  // `visibleWeeks` columns fill the screen and the rest sits off to
-  // the right, waiting to be scrolled to.
-  const visibleWeeks = getVisibleWeeks();
-  const containerWidth = grid.clientWidth || grid.getBoundingClientRect().width;
-  const step = containerWidth / visibleWeeks;
-  const gap = step * 0.22;
-  const cell = step - gap;
-
+  const step = CONTRIB_CELL + CONTRIB_GAP;
   const totalWeeks = yearGrid.length;
   const svgW = totalWeeks * step;
   const svgH = 7 * step;
@@ -242,12 +234,12 @@ function renderContribGrid(rawWeeks) {
       if (day.type === "pad") return; // outside the year, just alignment
 
       if (day.type === "future") {
-        rects += `<rect x="${x}" y="${y}" width="${cell}" height="${cell}" rx="3" fill="none" stroke="#e1d5c2" stroke-width="1.5"><title>${day.date}: upcoming</title></rect>`;
+        rects += `<rect x="${x}" y="${y}" width="${CONTRIB_CELL}" height="${CONTRIB_CELL}" rx="2.5" fill="none" stroke="#e1d5c2" stroke-width="1"><title>${day.date}: upcoming</title></rect>`;
         return;
       }
 
       const fill = day.count ? day.color : "#e1d5c2";
-      rects += `<rect x="${x}" y="${y}" width="${cell}" height="${cell}" rx="3" fill="${fill}"><title>${day.date}: ${day.count} contribution${day.count === 1 ? "" : "s"}</title></rect>`;
+      rects += `<rect x="${x}" y="${y}" width="${CONTRIB_CELL}" height="${CONTRIB_CELL}" rx="2.5" fill="${fill}"><title>${day.date}: ${day.count} contribution${day.count === 1 ? "" : "s"}</title></rect>`;
     });
   });
 
@@ -287,16 +279,4 @@ if (document.getElementById("contribGrid")) {
     .catch(() => {
       renderContribError();
     });
-
-  // Re-size the grid's columns when the viewport crosses the mobile/
-  // desktop breakpoint (e.g. resizing a browser window, or rotating
-  // a phone), so "one month visible" / "three months visible" stays
-  // accurate rather than freezing at whatever size the page loaded at.
-  let resizeTimer;
-  window.addEventListener("resize", () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      if (lastRawWeeks) renderContribGrid(lastRawWeeks);
-    }, 200);
-  });
 }
