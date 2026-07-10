@@ -174,15 +174,17 @@
 
       <!-- GITHUB CONTRIBUTIONS — pulled live via a Cloudflare Worker calling
        the real GitHub GraphQL API, so private-repo contributions count
-       and the range is locked to Jan 2026 → present. -->
-      <section class="section section--tight">
-        <p class="contrib-label">
-          Live from GitHub — Jan 2026 – Dec 2026 (future days shown empty)
-        </p>
+       and the range spans Jan–Dec 2026, with days not yet lived shown
+       as empty placeholders. -->
+      <section class="section section--tight contrib-section">
+        <p class="contrib-label">Live from GitHub</p>
+        <p class="contrib-total" id="contribTotal">— contributions in 2026</p>
         <div id="contribGrid" class="contrib-grid">
           <p class="contrib-loading">Loading contributions…</p>
         </div>
-        <p class="fine-print">Includes private repos.</p>
+        <p class="fine-print">
+          Includes private repos. Scroll to see the full year →
+        </p>
       </section>
 
       <!-- SKILLS -->
