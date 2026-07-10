@@ -2,6 +2,41 @@
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+// ============================================================
+// Mobile drawer nav
+// ============================================================
+const menuBtn = document.getElementById("menuBtn");
+const drawer = document.getElementById("drawer");
+const drawerBackdrop = document.getElementById("drawerBackdrop");
+const drawerClose = document.getElementById("drawerClose");
+
+function openDrawer() {
+  drawer.classList.add("is-open");
+  drawerBackdrop.classList.add("is-open");
+  menuBtn.classList.add("is-open");
+  menuBtn.setAttribute("aria-expanded", "true");
+  drawer.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+function closeDrawer() {
+  drawer.classList.remove("is-open");
+  drawerBackdrop.classList.remove("is-open");
+  menuBtn.classList.remove("is-open");
+  menuBtn.setAttribute("aria-expanded", "false");
+  drawer.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+if (menuBtn) {
+  menuBtn.addEventListener("click", () => {
+    drawer.classList.contains("is-open") ? closeDrawer() : openDrawer();
+  });
+  drawerClose.addEventListener("click", closeDrawer);
+  drawerBackdrop.addEventListener("click", closeDrawer);
+  drawer.querySelectorAll(".drawer__link").forEach((link) => {
+    link.addEventListener("click", closeDrawer);
+  });
+}
+
 const hero = document.getElementById("hero");
 
 // ============================================================
@@ -20,41 +55,32 @@ const hero = document.getElementById("hero");
 // after images/fonts finish loading and the layout settles.
 // ============================================================
 if (hero) {
-  // Glow 1 — larger, slower
+  // Each axis uses a SINGLE cosine term — this guarantees the glow
+  // actually reaches every corner (0% to 100% of width/height) every
+  // cycle. Golden-ratio / sqrt(2) mismatches between x and y keep the
+  // path from ever tracing the same loop twice.
   const fx1 = 0.00048;
-  const fy1 = fx1 * 1.61803399; // golden-ratio mismatch — path never repeats
+  const fy1 = fx1 * 1.61803399;
   const fr1 = fx1 * 0.7;
 
-  // Glow 2 — smaller, faster, different starting phase
   const fx2 = 0.00081;
-  const fy2 = fx2 * 1.41421356; // different irrational ratio (√2) so it never syncs with glow 1
+  const fy2 = fx2 * 1.41421356;
   const fr2 = fx2 * 0.55;
-  const phase2 = 2.4;
+  const phase2x = 2.4;
+  const phase2y = 5.1;
 
   function animateSpotlight(t) {
     const w = hero.clientWidth;
     const h = hero.clientHeight;
 
-    // Glow 1
-    const x1 =
-      w *
-      (((1 - Math.cos(t * fx1)) / 2) * 0.8 +
-        ((1 - Math.cos(t * fx1 * 2.3)) / 2) * 0.2);
-    const y1 =
-      h *
-      (((1 - Math.cos(t * fy1)) / 2) * 0.8 +
-        ((1 - Math.cos(t * fy1 * 2.3)) / 2) * 0.2);
+    // Glow 1 — full range guaranteed: (1-cos)/2 always spans exactly 0..1
+    const x1 = (w * (1 - Math.cos(t * fx1))) / 2;
+    const y1 = (h * (1 - Math.cos(t * fy1))) / 2;
     const size1 = 250 + (500 - 250) * (0.5 + 0.5 * Math.sin(t * fr1));
 
-    // Glow 2 — starts from a different corner and stays smaller
-    const x2 =
-      w *
-      (((1 - Math.cos(t * fx2 + phase2)) / 2) * 0.8 +
-        ((1 - Math.cos(t * fx2 * 2.1 + phase2)) / 2) * 0.2);
-    const y2 =
-      h *
-      (((1 - Math.cos(t * fy2 + phase2)) / 2) * 0.8 +
-        ((1 - Math.cos(t * fy2 * 2.1 + phase2)) / 2) * 0.2);
+    // Glow 2 — independent phase/frequency, also full range
+    const x2 = (w * (1 - Math.cos(t * fx2 + phase2x))) / 2;
+    const y2 = (h * (1 - Math.cos(t * fy2 + phase2y))) / 2;
     const size2 = 90 + (220 - 90) * (0.5 + 0.5 * Math.sin(t * fr2 + 1.1));
 
     hero.style.setProperty("--spot-x", `${x1}px`);

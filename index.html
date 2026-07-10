@@ -1,266 +1,533 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Viktor Ajayi — Software Engineer, Backend &amp; AI Systems</title>
-<meta name="description" content="Software Engineer specializing in backend architecture, cloud systems, and AI/RAG integration. Lagos, Nigeria.">
-<meta property="og:title" content="Viktor Ajayi — Software Engineer, Backend & AI Systems">
-<meta property="og:image" content="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1765530204/port_qi6gnb.png">
-<meta property="og:type" content="website">
-<meta name="theme-color" content="#F6F1E7">
-<link rel="icon" href="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1765530204/port_qi6gnb.png">
-<link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Viktor Ajayi — Software Engineer, Backend &amp; AI Systems</title>
+    <meta
+      name="description"
+      content="Software Engineer specializing in backend architecture, cloud systems, and AI/RAG integration. Lagos, Nigeria."
+    />
+    <meta
+      property="og:title"
+      content="Viktor Ajayi — Software Engineer, Backend & AI Systems"
+    />
+    <meta
+      property="og:image"
+      content="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1765530204/port_qi6gnb.png"
+    />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#F6F1E7" />
+    <link
+      rel="icon"
+      href="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1765530204/port_qi6gnb.png"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Glow layer: sits behind the topbar + hero, sized in JS to cover both,
+     so the two wandering glows can roam the full nav+hero area instead of
+     being boxed inside the hero section. -->
+    <div class="glow-layer" id="glowLayer" aria-hidden="true"></div>
 
-<header class="topbar">
-  <a href="#top" class="topbar__brand">Viktor Ajayi</a>
-  <nav class="topbar__links">
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#experience">Experience</a>
-    <a href="#contact" class="topbar__cta">Contact</a>
-  </nav>
-  <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-</header>
+    <header class="topbar">
+      <a href="#top" class="topbar__brand">Viktor Ajayi</a>
+      <nav class="topbar__links">
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact" class="topbar__cta">Contact</a>
+      </nav>
+      <button
+        class="menu-btn"
+        id="menuBtn"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </header>
 
-<div class="drawer-backdrop" id="drawerBackdrop"></div>
-<nav class="drawer" id="drawer" aria-hidden="true">
-  <div class="drawer__top">
-    <span class="drawer__name">Viktor Ajayi</span>
-    <button class="drawer__close" id="drawerClose" aria-label="Close menu">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
-    </button>
-  </div>
-  <a href="#skills" class="drawer__link"><span>01</span>Skills</a>
-  <a href="#projects" class="drawer__link"><span>02</span>Projects</a>
-  <a href="#experience" class="drawer__link"><span>03</span>Experience</a>
-  <a href="#contact" class="drawer__link"><span>04</span>Contact</a>
-  <div class="drawer__social">
-    <a href="https://github.com/Viktorpeters" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://www.linkedin.com/in/victor-ajayi1" target="_blank" rel="noopener">LinkedIn</a>
-  </div>
-</nav>
-</header>
+    <div class="drawer-backdrop" id="drawerBackdrop"></div>
+    <nav class="drawer" id="drawer" aria-hidden="true">
+      <div class="drawer__top">
+        <span class="drawer__name">Viktor Ajayi</span>
+        <button class="drawer__close" id="drawerClose" aria-label="Close menu">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+            <path
+              d="M18 6L6 18M6 6L18 18"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+      </div>
+      <a href="#skills" class="drawer__link"><span>01</span>Skills</a>
+      <a href="#projects" class="drawer__link"><span>02</span>Projects</a>
+      <a href="#experience" class="drawer__link"><span>03</span>Experience</a>
+      <a href="#contact" class="drawer__link"><span>04</span>Contact</a>
+      <div class="drawer__social">
+        <a href="https://github.com/Viktorpeters" target="_blank" rel="noopener"
+          >GitHub</a
+        >
+        <a
+          href="https://www.linkedin.com/in/victor-ajayi1"
+          target="_blank"
+          rel="noopener"
+          >LinkedIn</a
+        >
+      </div>
+    </nav>
 
-<main id="top">
+    <main id="top">
+      <!-- HERO -->
+      <section class="hero" id="hero">
+        <img
+          class="hero__portrait"
+          src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1765531027/vik-removebg-preview_dnhvan.png"
+          alt="Viktor Ajayi"
+        />
+        <div class="hero__copy">
+          <p class="eyebrow reveal-word">
+            Software Engineer · Backend &amp; AI Systems
+          </p>
+          <h1 class="hero__title">
+            <span class="reveal-word">Viktor</span>
+            <span class="reveal-word">Ajayi</span>
+          </h1>
+          <p class="hero__sub reveal-word">
+            I build backend systems, cloud infrastructure, and RAG-powered AI
+            agents that run in production — not demos. 3+ years shipping for
+            edtech, logistics, and ecommerce.
+          </p>
+          <div class="hero__actions reveal-word">
+            <a href="#projects" class="btn btn--primary magnetic"
+              >View projects</a
+            >
+            <a
+              href="mailto:victorajayidamilare@gmail.com"
+              class="btn btn--ghost magnetic"
+            >
+              <span class="btn-icon phone-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="16"
+                  height="16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.5 21 3 13.5 3 4.7c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              Contact
+            </a>
+            <a
+              href="https://github.com/Viktorpeters"
+              target="_blank"
+              rel="noopener"
+              class="btn btn--ghost magnetic"
+            >
+              <span class="btn-icon">
+                <svg
+                  viewBox="0 0 16 16"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"
+                  />
+                </svg>
+              </span>
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/victor-ajayi1"
+              target="_blank"
+              rel="noopener"
+              class="btn btn--ghost magnetic"
+            >
+              <span class="btn-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="16"
+                  height="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect width="24" height="24" rx="4" fill="#0A66C2" />
+                  <path
+                    d="M7.3 9.7H4.7V19h2.6V9.7ZM6 5.4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3ZM19.3 19h-2.6v-4.8c0-1.1 0-2.6-1.6-2.6s-1.9 1.2-1.9 2.5V19H10.6V9.7h2.5v1.3h.03c.35-.66 1.2-1.36 2.5-1.36 2.66 0 3.15 1.75 3.15 4.03V19Z"
+                    fill="#fff"
+                  />
+                </svg>
+              </span>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </section>
 
-  <!-- HERO -->
-  <section class="hero" id="hero">
-    <img class="hero__portrait" src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1765531027/vik-removebg-preview_dnhvan.png" alt="Viktor Ajayi">
-    <div class="hero__copy">
-      <p class="eyebrow reveal-word">Software Engineer · Backend &amp; AI Systems</p>
-      <h1 class="hero__title">
-        <span class="reveal-word">Viktor</span> <span class="reveal-word">Ajayi</span>
-      </h1>
-      <p class="hero__sub reveal-word">I build backend systems, cloud infrastructure, and RAG-powered AI agents that run in production — not demos. 3+ years shipping for edtech, logistics, and ecommerce.</p>
-      <div class="hero__actions reveal-word">
-        <a href="#projects" class="btn btn--primary magnetic">View projects</a>
-        <a href="mailto:victorajayidamilare@gmail.com" class="btn btn--ghost magnetic">
-          <span class="btn-icon phone-icon">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.5 21 3 13.5 3 4.7c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8Z" fill="currentColor"/>
+      <!-- GITHUB CONTRIBUTIONS — pulled live via a Cloudflare Worker calling
+       the real GitHub GraphQL API, so private-repo contributions count
+       and the range is locked to Jan 2026 → present. -->
+      <section class="section section--tight">
+        <p class="contrib-label">
+          Live from GitHub — Jan 2026 – Dec 2026 (future days shown empty)
+        </p>
+        <div id="contribGrid" class="contrib-grid">
+          <p class="contrib-loading">Loading contributions…</p>
+        </div>
+        <p class="fine-print">Includes private repos.</p>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills" class="section">
+        <h2 class="section__title">Skills</h2>
+        <div class="skills">
+          <div class="skill-group">
+            <h3>Backend &amp; Systems</h3>
+            <ul class="tag-list">
+              <li>Node.js / Express</li>
+              <li>NestJS</li>
+              <li>Go</li>
+              <li>Microservices</li>
+              <li>Event-driven design</li>
+              <li>PostgreSQL</li>
+              <li>Redis</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Cloud &amp; DevOps</h3>
+            <ul class="tag-list">
+              <li>AWS</li>
+              <li>Google Cloud</li>
+              <li>DigitalOcean</li>
+              <li>Docker</li>
+              <li>CI/CD</li>
+              <li>Nginx / HAProxy</li>
+              <li>Cloudflare</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>AI &amp; RAG</h3>
+            <ul class="tag-list">
+              <li>Agentic AI systems</li>
+              <li>RAG architectures</li>
+              <li>Vector DBs (Pinecone, Weaviate)</li>
+              <li>Open-source LLMs via Hugging Face (Llama, Mixtral)</li>
+              <li>Claude / GPT-4 (complex reasoning)</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Security &amp; Quality</h3>
+            <ul class="tag-list">
+              <li>OWASP Top 10</li>
+              <li>JWT / OAuth</li>
+              <li>Pen testing</li>
+              <li>Rate limiting</li>
+              <li>Data structures &amp; algorithms</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="section">
+        <h2 class="section__title">Projects</h2>
+        <div class="projects">
+          <article class="project-card project-card--logo">
+            <div class="project-card__img-wrap">
+              <img
+                src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1782660457/ca-removebg-preview_zdrvwd.png"
+                alt="Cardly logo"
+                loading="lazy"
+              />
+            </div>
+            <div class="project-card__body">
+              <h3>Cardly</h3>
+              <p>
+                New product currently in build, including a hand-crafted brand
+                identity and wordmark.
+              </p>
+              <ul class="tag-list tag-list--sm">
+                <li>In development</li>
+              </ul>
+              <a href="https://cardly.ng" target="_blank" rel="noopener"
+                >Visit site →</a
+              >
+            </div>
+          </article>
+
+          <article class="project-card">
+            <img
+              src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1782773212/cc_duxaoo.png"
+              alt="Zélie AI French tutor"
+              loading="lazy"
+            />
+            <div class="project-card__body">
+              <h3>Zélie — AI French Tutor</h3>
+              <p>
+                An agentic tutor that reasons over multiple steps, not just RAG
+                lookup — grounded in the learner's own progress and a CLB rubric
+                for TEF/TCF prep. Runs on open-source models via Hugging Face to
+                keep inference costs sustainable at scale.
+              </p>
+              <ul class="tag-list tag-list--sm">
+                <li>NestJS</li>
+                <li>Agentic AI</li>
+                <li>RAG</li>
+                <li>Open-source LLMs</li>
+              </ul>
+              <a
+                href="https://frenchwithzelie.io"
+                target="_blank"
+                rel="noopener"
+                >Visit site →</a
+              >
+            </div>
+          </article>
+
+          <article class="project-card">
+            <img
+              src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1783594135/qq_xaq3hu.png"
+              alt="Parcel Coast"
+              loading="lazy"
+            />
+            <div class="project-card__body">
+              <h3>Parcel Coast</h3>
+              <p>
+                Ecommerce &amp; logistics platform with Chinedu, a multimodal AI
+                agent — chat to check product availability, or attach a photo of
+                what you're looking for. Backend built in Go for seamless
+                horizontal scaling.
+              </p>
+              <ul class="tag-list tag-list--sm">
+                <li>Go</li>
+                <li>Agentic AI</li>
+                <li>Multimodal</li>
+              </ul>
+              <a href="https://parcelcoast.com" target="_blank" rel="noopener"
+                >Visit site →</a
+              >
+            </div>
+          </article>
+
+          <article class="project-card">
+            <img
+              src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1765997742/t1_dznrgp.png"
+              alt="AlternativeSchool.Live"
+              loading="lazy"
+            />
+            <div class="project-card__body">
+              <h3>AlternativeSchool.Live</h3>
+              <p>
+                Remote-learning platform with an AI Counsellor (RAG) that knows
+                each student's grades, attempts, and weak areas.
+              </p>
+              <ul class="tag-list tag-list--sm">
+                <li>Next.js</li>
+                <li>RAG</li>
+                <li>MongoDB</li>
+              </ul>
+              <a
+                href="https://alternativeschool.com"
+                target="_blank"
+                rel="noopener"
+                >Visit site →</a
+              >
+            </div>
+          </article>
+
+          <article class="project-card">
+            <img
+              src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1781530593/t5_cokqwj.png"
+              alt="TechFacilitators Mentorship Platform"
+              loading="lazy"
+            />
+            <div class="project-card__body">
+              <h3>TechFacilitators Mentorship</h3>
+              <p>
+                Mentorship platform for teenagers learning real engineering,
+                with an auto-grading Skill-Review Engine.
+              </p>
+              <ul class="tag-list tag-list--sm">
+                <li>Next.js</li>
+                <li>PostgreSQL</li>
+                <li>AI grading</li>
+              </ul>
+              <a
+                href="https://mentorship.techfacilitators.com"
+                target="_blank"
+                rel="noopener"
+                >Visit site →</a
+              >
+            </div>
+          </article>
+        </div>
+        <div class="section__more">
+          <a
+            href="https://github.com/Viktorpeters"
+            target="_blank"
+            rel="noopener"
+            >See more on GitHub →</a
+          >
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience" class="section">
+        <h2 class="section__title">Experience</h2>
+        <div class="timeline">
+          <div class="timeline__row">
+            <div class="timeline__meta">Mar 2026 – Present</div>
+            <div class="timeline__body">
+              <h3>Full Stack Engineer <span class="at">· Jura</span></h3>
+              <p>
+                Irish law exam-prep platform: AI essay grading, Stripe billing,
+                media pipeline for 269 podcast episodes.
+              </p>
+            </div>
+          </div>
+          <div class="timeline__row">
+            <div class="timeline__meta">Nov 2025 – Mar 2026</div>
+            <div class="timeline__body">
+              <h3>Backend Developer <span class="at">· LiteParcel</span></h3>
+              <p>
+                Logistics platform in Go — microservices for tracking, routing,
+                delivery management.
+              </p>
+            </div>
+          </div>
+          <div class="timeline__row">
+            <div class="timeline__meta">May 2025 – Nov 2025</div>
+            <div class="timeline__body">
+              <h3>
+                Full Stack / Backend Engineer
+                <span class="at">· Bolrach Technologies</span>
+              </h3>
+              <p>
+                AI-powered dating app, 10,000+ active users, real-time messaging
+                and payments.
+              </p>
+            </div>
+          </div>
+          <div class="timeline__row">
+            <div class="timeline__meta">Jan 2025 – May 2025</div>
+            <div class="timeline__body">
+              <h3>
+                Lead Developer / DevOps
+                <span class="at">· Kloud6 Technologies</span>
+              </h3>
+              <p>
+                Ecommerce, fintech, and enterprise clients — cloud infra, CI/CD.
+              </p>
+            </div>
+          </div>
+          <div class="timeline__row">
+            <div class="timeline__meta">Jun 2024 – Dec 2024</div>
+            <div class="timeline__body">
+              <h3>
+                Full Stack / Mobile Developer
+                <span class="at">· LesGilles Ltd</span>
+              </h3>
+              <p>
+                Web and cross-platform mobile apps for ecommerce, healthcare,
+                finance clients.
+              </p>
+            </div>
+          </div>
+          <div class="timeline__row">
+            <div class="timeline__meta">Volunteer</div>
+            <div class="timeline__body">
+              <h3>
+                Python Instructor
+                <span class="at">· Germany Immigration Institute</span>
+              </h3>
+              <p>Community-service programming instruction.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="section contact">
+        <h2 class="section__title">Contact</h2>
+
+        <a href="tel:+2348143324603" class="phone-chip">
+          <span class="phone-icon">
+            <svg
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.5 21 3 13.5 3 4.7c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8Z"
+                fill="currentColor"
+              />
             </svg>
           </span>
-          Contact
+          <span>+234 814 332 4603</span>
         </a>
-        <a href="https://github.com/Viktorpeters" target="_blank" rel="noopener" class="btn btn--ghost magnetic">
-          <span class="btn-icon">
-            <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+
+        <a href="mailto:victorajayidamilare@gmail.com" class="contact__email"
+          >victorajayidamilare@gmail.com</a
+        >
+
+        <div class="contact__links">
+          <a
+            href="https://github.com/Viktorpeters"
+            target="_blank"
+            rel="noopener"
+            class="icon-chip"
+          >
+            <svg
+              viewBox="0 0 16 16"
+              width="18"
+              height="18"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"
+              />
             </svg>
-          </span>
-          GitHub
-        </a>
-        <a href="https://www.linkedin.com/in/victor-ajayi1" target="_blank" rel="noopener" class="btn btn--ghost magnetic">
-          <span class="btn-icon">
-            <svg viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
-              <rect width="24" height="24" rx="4" fill="#0A66C2"/>
-              <path d="M7.3 9.7H4.7V19h2.6V9.7ZM6 5.4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3ZM19.3 19h-2.6v-4.8c0-1.1 0-2.6-1.6-2.6s-1.9 1.2-1.9 2.5V19H10.6V9.7h2.5v1.3h.03c.35-.66 1.2-1.36 2.5-1.36 2.66 0 3.15 1.75 3.15 4.03V19Z" fill="#fff"/>
+            <span>github.com/Viktorpeters</span>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/victor-ajayi1"
+            target="_blank"
+            rel="noopener"
+            class="icon-chip"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="24" height="24" rx="4" fill="#0A66C2" />
+              <path
+                d="M7.3 9.7H4.7V19h2.6V9.7ZM6 5.4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3ZM19.3 19h-2.6v-4.8c0-1.1 0-2.6-1.6-2.6s-1.9 1.2-1.9 2.5V19H10.6V9.7h2.5v1.3h.03c.35-.66 1.2-1.36 2.5-1.36 2.66 0 3.15 1.75 3.15 4.03V19Z"
+                fill="#fff"
+              />
             </svg>
-          </span>
-          LinkedIn
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- GITHUB CONTRIBUTIONS -->
-  <section class="section section--tight">
-    <p class="contrib-label">Live from GitHub — the exact grid from my profile, recolored to match this site</p>
-    <img class="contrib-img" src="https://streak-stats.demolab.com/?user=Viktorpeters&count_private=true&hide_border=true&background=00000000&stroke=D8CDBB&ring=B5652E&fire=B5652E&currStreakLabel=B5652E&sideNums=2A2420&currStreakNum=2A2420&sideLabels=6B6259&dates=8A7F70&font_family=sans-serif" alt="Viktor Ajayi GitHub contribution stats" loading="lazy">
-    <div class="contrib-calendar">
-      <img src="https://ghchart.rshah.org/b5652e/Viktorpeters" alt="Viktor Ajayi GitHub contribution calendar" loading="lazy">
-    </div>
-    <p class="fine-print">Both pulled live, including private repos.</p>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills" class="section">
-    <h2 class="section__title">Skills</h2>
-    <div class="skills">
-      <div class="skill-group">
-        <h3>Backend &amp; Systems</h3>
-        <ul class="tag-list">
-          <li>Node.js / Express</li><li>NestJS</li><li>Go</li><li>Microservices</li><li>Event-driven design</li><li>PostgreSQL</li><li>Redis</li>
-        </ul>
-      </div>
-      <div class="skill-group">
-        <h3>Cloud &amp; DevOps</h3>
-        <ul class="tag-list">
-          <li>AWS</li><li>Google Cloud</li><li>DigitalOcean</li><li>Docker</li><li>CI/CD</li><li>Nginx / HAProxy</li><li>Cloudflare</li>
-        </ul>
-      </div>
-      <div class="skill-group">
-        <h3>AI &amp; RAG</h3>
-        <ul class="tag-list">
-          <li>Agentic AI systems</li><li>RAG architectures</li><li>Vector DBs (Pinecone, Weaviate)</li><li>Open-source LLMs via Hugging Face (Llama, Mixtral)</li><li>Claude / GPT-4 (complex reasoning)</li>
-        </ul>
-      </div>
-      <div class="skill-group">
-        <h3>Security &amp; Quality</h3>
-        <ul class="tag-list">
-          <li>OWASP Top 10</li><li>JWT / OAuth</li><li>Pen testing</li><li>Rate limiting</li><li>Data structures &amp; algorithms</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects" class="section">
-    <h2 class="section__title">Projects</h2>
-    <div class="projects">
-
-      <article class="project-card project-card--logo">
-        <div class="project-card__img-wrap">
-          <img src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1782660457/ca-removebg-preview_zdrvwd.png" alt="Cardly logo" loading="lazy">
+            <span>linkedin.com/in/victor-ajayi1</span>
+          </a>
         </div>
-        <div class="project-card__body">
-          <h3>Cardly</h3>
-          <p>New product currently in build, including a hand-crafted brand identity and wordmark.</p>
-          <ul class="tag-list tag-list--sm"><li>In development</li></ul>
-          <a href="https://cardly.ng" target="_blank" rel="noopener">Visit site →</a>
-        </div>
-      </article>
+      </section>
+    </main>
 
-      <article class="project-card">
-        <img src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1782773212/cc_duxaoo.png" alt="Zélie AI French tutor" loading="lazy">
-        <div class="project-card__body">
-          <h3>Zélie — AI French Tutor</h3>
-          <p>An agentic tutor that reasons over multiple steps, not just RAG lookup — grounded in the learner's own progress and a CLB rubric for TEF/TCF prep. Runs on open-source models via Hugging Face to keep inference costs sustainable at scale.</p>
-          <ul class="tag-list tag-list--sm"><li>NestJS</li><li>Agentic AI</li><li>RAG</li><li>Open-source LLMs</li></ul>
-          <a href="https://frenchwithzelie.io" target="_blank" rel="noopener">Visit site →</a>
-        </div>
-      </article>
+    <footer class="footer">
+      <p>© <span id="year">2026</span> Viktor Ajayi · Lagos, Nigeria</p>
+    </footer>
 
-      <article class="project-card">
-        <img src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1783594135/qq_xaq3hu.png" alt="Parcel Coast" loading="lazy">
-        <div class="project-card__body">
-          <h3>Parcel Coast</h3>
-          <p>Ecommerce &amp; logistics platform with Chinedu, a multimodal AI agent — chat to check product availability, or attach a photo of what you're looking for. Backend built in Go for seamless horizontal scaling.</p>
-          <ul class="tag-list tag-list--sm"><li>Go</li><li>Agentic AI</li><li>Multimodal</li></ul>
-          <a href="https://parcelcoast.com" target="_blank" rel="noopener">Visit site →</a>
-        </div>
-      </article>
-
-      <article class="project-card">
-        <img src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1765997742/t1_dznrgp.png" alt="AlternativeSchool.Live" loading="lazy">
-        <div class="project-card__body">
-          <h3>AlternativeSchool.Live</h3>
-          <p>Remote-learning platform with an AI Counsellor (RAG) that knows each student's grades, attempts, and weak areas.</p>
-          <ul class="tag-list tag-list--sm"><li>Next.js</li><li>RAG</li><li>MongoDB</li></ul>
-          <a href="https://alternativeschool.com" target="_blank" rel="noopener">Visit site →</a>
-        </div>
-      </article>
-
-      <article class="project-card">
-        <img src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1781530593/t5_cokqwj.png" alt="TechFacilitators Mentorship Platform" loading="lazy">
-        <div class="project-card__body">
-          <h3>TechFacilitators Mentorship</h3>
-          <p>Mentorship platform for teenagers learning real engineering, with an auto-grading Skill-Review Engine.</p>
-          <ul class="tag-list tag-list--sm"><li>Next.js</li><li>PostgreSQL</li><li>AI grading</li></ul>
-          <a href="https://mentorship.techfacilitators.com" target="_blank" rel="noopener">Visit site →</a>
-        </div>
-      </article>
-
-    </div>
-    <div class="section__more">
-      <a href="https://github.com/Viktorpeters" target="_blank" rel="noopener">See more on GitHub →</a>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section id="experience" class="section">
-    <h2 class="section__title">Experience</h2>
-    <div class="timeline">
-      <div class="timeline__row">
-        <div class="timeline__meta">Mar 2026 – Present</div>
-        <div class="timeline__body"><h3>Full Stack Engineer <span class="at">· Jura</span></h3><p>Irish law exam-prep platform: AI essay grading, Stripe billing, media pipeline for 269 podcast episodes.</p></div>
-      </div>
-      <div class="timeline__row">
-        <div class="timeline__meta">Nov 2025 – Mar 2026</div>
-        <div class="timeline__body"><h3>Backend Developer <span class="at">· LiteParcel</span></h3><p>Logistics platform in Go — microservices for tracking, routing, delivery management.</p></div>
-      </div>
-      <div class="timeline__row">
-        <div class="timeline__meta">May 2025 – Nov 2025</div>
-        <div class="timeline__body"><h3>Full Stack / Backend Engineer <span class="at">· Bolrach Technologies</span></h3><p>AI-powered dating app, 10,000+ active users, real-time messaging and payments.</p></div>
-      </div>
-      <div class="timeline__row">
-        <div class="timeline__meta">Jan 2025 – May 2025</div>
-        <div class="timeline__body"><h3>Lead Developer / DevOps <span class="at">· Kloud6 Technologies</span></h3><p>Ecommerce, fintech, and enterprise clients — cloud infra, CI/CD.</p></div>
-      </div>
-      <div class="timeline__row">
-        <div class="timeline__meta">Jun 2024 – Dec 2024</div>
-        <div class="timeline__body"><h3>Full Stack / Mobile Developer <span class="at">· LesGilles Ltd</span></h3><p>Web and cross-platform mobile apps for ecommerce, healthcare, finance clients.</p></div>
-      </div>
-      <div class="timeline__row">
-        <div class="timeline__meta">Volunteer</div>
-        <div class="timeline__body"><h3>Python Instructor <span class="at">· Germany Immigration Institute</span></h3><p>Community-service programming instruction.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="section contact">
-    <h2 class="section__title">Contact</h2>
-
-    <a href="tel:+2348143324603" class="phone-chip">
-      <span class="phone-icon">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.5 21 3 13.5 3 4.7c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8Z" fill="currentColor"/>
-        </svg>
-      </span>
-      <span>+234 814 332 4603</span>
-    </a>
-
-    <a href="mailto:victorajayidamilare@gmail.com" class="contact__email">victorajayidamilare@gmail.com</a>
-
-    <div class="contact__links">
-      <a href="https://github.com/Viktorpeters" target="_blank" rel="noopener" class="icon-chip">
-        <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
-        </svg>
-        <span>github.com/Viktorpeters</span>
-      </a>
-      <a href="https://www.linkedin.com/in/victor-ajayi1" target="_blank" rel="noopener" class="icon-chip">
-        <svg viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg">
-          <rect width="24" height="24" rx="4" fill="#0A66C2"/>
-          <path d="M7.3 9.7H4.7V19h2.6V9.7ZM6 5.4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3ZM19.3 19h-2.6v-4.8c0-1.1 0-2.6-1.6-2.6s-1.9 1.2-1.9 2.5V19H10.6V9.7h2.5v1.3h.03c.35-.66 1.2-1.36 2.5-1.36 2.66 0 3.15 1.75 3.15 4.03V19Z" fill="#fff"/>
-        </svg>
-        <span>linkedin.com/in/victor-ajayi1</span>
-      </a>
-    </div>
-  </section>
-
-</main>
-
-<footer class="footer">
-  <p>© <span id="year">2026</span> Viktor Ajayi · Lagos, Nigeria</p>
-</footer>
-
-<script src="js/main.js"></script>
-</body>
+    <script src="js/main.js"></script>
+  </body>
 </html>
