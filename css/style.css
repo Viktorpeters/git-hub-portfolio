@@ -537,11 +537,17 @@ main {
   font-size: clamp(2rem, 6vw, 3.4rem);
   font-weight: 900;
   color: var(--text);
-  margin: 0 0 22px;
+  margin: 0 0 6px;
   line-height: 1.1;
 }
 .contrib-total .contrib-total-number {
   color: var(--accent);
+}
+.contrib-alltime {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin: 0 0 22px;
 }
 .contrib-grid {
   max-width: 100%;

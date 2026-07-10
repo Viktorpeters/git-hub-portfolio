@@ -276,10 +276,16 @@ function renderContribGrid(rawWeeks) {
   grid.innerHTML = `<svg width="${svgW}" height="${svgH}" viewBox="0 0 ${svgW} ${svgH}" role="img" aria-label="GitHub contribution grid, January to December ${year}">${labels}${rects}</svg>`;
 }
 
-function renderContribTotal(total) {
+function renderContribTotal(thisYearTotal, allTimeTotal) {
   const el = document.getElementById("contribTotal");
-  if (!el) return;
-  el.innerHTML = `<span class="contrib-total-number">${total.toLocaleString()}</span> contributions as at ${new Date().getUTCFullYear()}`;
+  const allTimeEl = document.getElementById("contribAllTime");
+  const year = new Date().getUTCFullYear();
+  if (el) {
+    el.innerHTML = `<span class="contrib-total-number">${thisYearTotal.toLocaleString()}</span> contributions in ${year}`;
+  }
+  if (allTimeEl) {
+    allTimeEl.textContent = `${allTimeTotal.toLocaleString()} total contributions on GitHub`;
+  }
 }
 
 function renderContribError() {
@@ -296,15 +302,27 @@ if (document.getElementById("contribGrid")) {
       return res.json();
     })
     .then((json) => {
-      const calendar =
-        json &&
-        json.data &&
-        json.data.user &&
-        json.data.user.contributionsCollection &&
-        json.data.user.contributionsCollection.contributionCalendar;
-      if (!calendar) throw new Error("Unexpected response shape");
-      renderContribGrid(calendar.weeks);
-      renderContribTotal(calendar.totalContributions);
+      const user = json && json.data && json.data.user;
+      if (!user) throw new Error("Unexpected response shape");
+
+      // The Worker returns one aliased field per year, like
+      // y2022, y2023, y2024... — sum all of them for the all-time
+      // total, and pull the current year's one out separately since
+      // it's the only one carrying day-by-day data for the grid.
+      const currentYear = new Date().getUTCFullYear();
+      const yearKeys = Object.keys(user).filter((k) => /^y\d{4}$/.test(k));
+
+      let allTimeTotal = 0;
+      yearKeys.forEach((k) => {
+        allTimeTotal += user[k].contributionCalendar.totalContributions;
+      });
+
+      const thisYearCalendar =
+        user["y" + currentYear] && user["y" + currentYear].contributionCalendar;
+      if (!thisYearCalendar) throw new Error("Missing current year data");
+
+      renderContribGrid(thisYearCalendar.weeks);
+      renderContribTotal(thisYearCalendar.totalContributions, allTimeTotal);
     })
     .catch((err) => {
       console.error("Contribution grid fetch failed:", err);
