@@ -203,7 +203,16 @@ function buildYearGrid(dataMap, year) {
   return weeks;
 }
 
+// How many week-columns should be visible in one "screenful" of the
+// scroller: on narrow screens, ~1 month; on wider screens, ~3 months.
+function getVisibleWeeks() {
+  return window.innerWidth < 700 ? 4.3 : 13;
+}
+
+let lastRawWeeks = null;
+
 function renderContribGrid(rawWeeks) {
+  lastRawWeeks = rawWeeks; // keep so we can re-render cleanly on resize
   const grid = document.getElementById("contribGrid");
   if (!grid) return;
 
@@ -211,10 +220,17 @@ function renderContribGrid(rawWeeks) {
   const year = new Date().getUTCFullYear();
   const yearGrid = buildYearGrid(dataMap, year);
 
-  const cell = 12;
-  const gap = 3;
-  const step = cell + gap;
-  const svgW = yearGrid.length * step;
+  // Size cells from the box's own visible width, so exactly
+  // `visibleWeeks` columns fill the screen and the rest sits off to
+  // the right, waiting to be scrolled to.
+  const visibleWeeks = getVisibleWeeks();
+  const containerWidth = grid.clientWidth || grid.getBoundingClientRect().width;
+  const step = containerWidth / visibleWeeks;
+  const gap = step * 0.22;
+  const cell = step - gap;
+
+  const totalWeeks = yearGrid.length;
+  const svgW = totalWeeks * step;
   const svgH = 7 * step;
 
   let rects = "";
@@ -223,22 +239,25 @@ function renderContribGrid(rawWeeks) {
       const x = wi * step;
       const y = di * step;
 
-      if (day.type === "pad") {
-        return; // outside the year, leave fully blank for alignment
-      }
+      if (day.type === "pad") return; // outside the year, just alignment
 
       if (day.type === "future") {
-        // Hasn't happened yet — outlined placeholder, not filled.
-        rects += `<rect x="${x}" y="${y}" width="${cell}" height="${cell}" rx="2" fill="none" stroke="#e1d5c2" stroke-width="1"><title>${day.date}: upcoming</title></rect>`;
+        rects += `<rect x="${x}" y="${y}" width="${cell}" height="${cell}" rx="3" fill="none" stroke="#e1d5c2" stroke-width="1.5"><title>${day.date}: upcoming</title></rect>`;
         return;
       }
 
       const fill = day.count ? day.color : "#e1d5c2";
-      rects += `<rect x="${x}" y="${y}" width="${cell}" height="${cell}" rx="2" fill="${fill}"><title>${day.date}: ${day.count} contribution${day.count === 1 ? "" : "s"}</title></rect>`;
+      rects += `<rect x="${x}" y="${y}" width="${cell}" height="${cell}" rx="3" fill="${fill}"><title>${day.date}: ${day.count} contribution${day.count === 1 ? "" : "s"}</title></rect>`;
     });
   });
 
-  grid.innerHTML = `<svg viewBox="0 0 ${svgW} ${svgH}" width="100%" role="img" aria-label="GitHub contribution grid, January to December ${year}">${rects}</svg>`;
+  grid.innerHTML = `<svg width="${svgW}" height="${svgH}" viewBox="0 0 ${svgW} ${svgH}" role="img" aria-label="GitHub contribution grid, January to December ${year}">${rects}</svg>`;
+}
+
+function renderContribTotal(total) {
+  const el = document.getElementById("contribTotal");
+  if (!el) return;
+  el.innerHTML = `<span class="contrib-total-number">${total.toLocaleString()}</span> contributions in ${new Date().getUTCFullYear()}`;
 }
 
 function renderContribError() {
@@ -255,17 +274,29 @@ if (document.getElementById("contribGrid")) {
       return res.json();
     })
     .then((json) => {
-      const weeks =
+      const calendar =
         json &&
         json.data &&
         json.data.user &&
         json.data.user.contributionsCollection &&
-        json.data.user.contributionsCollection.contributionCalendar &&
-        json.data.user.contributionsCollection.contributionCalendar.weeks;
-      if (!weeks) throw new Error("Unexpected response shape");
-      renderContribGrid(weeks);
+        json.data.user.contributionsCollection.contributionCalendar;
+      if (!calendar) throw new Error("Unexpected response shape");
+      renderContribGrid(calendar.weeks);
+      renderContribTotal(calendar.totalContributions);
     })
     .catch(() => {
       renderContribError();
     });
+
+  // Re-size the grid's columns when the viewport crosses the mobile/
+  // desktop breakpoint (e.g. resizing a browser window, or rotating
+  // a phone), so "one month visible" / "three months visible" stays
+  // accurate rather than freezing at whatever size the page loaded at.
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (lastRawWeeks) renderContribGrid(lastRawWeeks);
+    }, 200);
+  });
 }
