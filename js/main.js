@@ -206,10 +206,21 @@ function buildYearGrid(dataMap, year) {
 // Fixed cell size close to GitHub's own graph, just a touch bigger
 // (~1.25x) so it reads as intentional rather than tiny — not scaled
 // up to fill the screen, which is what made it huge before.
-const CONTRIB_CELL = 13;
-const CONTRIB_GAP = 4;
-
-let lastRawWeeks = null;
+const MONTH_ABBR = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+const LABEL_HEIGHT = 20; // room reserved above the grid for month text
 
 function renderContribGrid(rawWeeks) {
   lastRawWeeks = rawWeeks;
@@ -223,13 +234,28 @@ function renderContribGrid(rawWeeks) {
   const step = CONTRIB_CELL + CONTRIB_GAP;
   const totalWeeks = yearGrid.length;
   const svgW = totalWeeks * step;
-  const svgH = 7 * step;
+  const svgH = 7 * step + LABEL_HEIGHT;
+
+  // Find, for each week column, whether it contains the 1st of a
+  // month — that's where GitHub places its month label, above the
+  // column rather than centered over the whole month's span.
+  let labels = "";
+  yearGrid.forEach((week, wi) => {
+    const firstOfMonth = week.find(
+      (day) => day.date && day.date.slice(8, 10) === "01" && day.type !== "pad",
+    );
+    if (firstOfMonth) {
+      const monthIdx = parseInt(firstOfMonth.date.slice(5, 7), 10) - 1;
+      const x = wi * step;
+      labels += `<text x="${x}" y="${LABEL_HEIGHT - 6}" font-size="11" fill="#8a7f70" font-family="inherit">${MONTH_ABBR[monthIdx]}</text>`;
+    }
+  });
 
   let rects = "";
   yearGrid.forEach((week, wi) => {
     week.forEach((day, di) => {
       const x = wi * step;
-      const y = di * step;
+      const y = di * step + LABEL_HEIGHT;
 
       if (day.type === "pad") return; // outside the year, just alignment
 
@@ -243,13 +269,13 @@ function renderContribGrid(rawWeeks) {
     });
   });
 
-  grid.innerHTML = `<svg width="${svgW}" height="${svgH}" viewBox="0 0 ${svgW} ${svgH}" role="img" aria-label="GitHub contribution grid, January to December ${year}">${rects}</svg>`;
+  grid.innerHTML = `<svg width="${svgW}" height="${svgH}" viewBox="0 0 ${svgW} ${svgH}" role="img" aria-label="GitHub contribution grid, January to December ${year}">${labels}${rects}</svg>`;
 }
 
 function renderContribTotal(total) {
   const el = document.getElementById("contribTotal");
   if (!el) return;
-  el.innerHTML = `<span class="contrib-total-number">${total.toLocaleString()}</span> contributions in ${new Date().getUTCFullYear()}`;
+  el.innerHTML = `<span class="contrib-total-number">${total.toLocaleString()}</span> contributions so far in ${new Date().getUTCFullYear()}`;
 }
 
 function renderContribError() {
