@@ -25,6 +25,7 @@ function scrollMessagesToBottom() {
 function addMessageBubble(role, text) {
   const bubble = document.createElement("div");
   bubble.className = `chat-msg chat-msg--${role}`;
+  bubble.textContent = text; // FIX: this was missing — text was being silently discarded
   chatMessages.appendChild(bubble);
   scrollMessagesToBottom();
   return bubble;

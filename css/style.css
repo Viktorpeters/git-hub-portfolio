@@ -1120,3 +1120,12 @@ main {
     transition: none;
   }
 }
+
+/* FIX: user's own typed messages don't go through the word-by-word
+   streaming reveal used for the assistant's replies — force them
+   visible regardless of whether chat.js ever adds .chat-word--in to
+   them, otherwise they render as an empty bubble (just padding,
+   no visible text), which is the bug in the screenshot. */
+.chat-msg--user .chat-word {
+  opacity: 1;
+}
