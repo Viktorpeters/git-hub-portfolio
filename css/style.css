@@ -1103,3 +1103,20 @@ main {
     animation: none;
   }
 }
+
+/* Each word in a streaming reply fades in individually, giving the
+   reveal some real transition instead of just snapping into place. */
+.chat-word {
+  display: inline;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.chat-word--in {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .chat-word {
+    opacity: 1;
+    transition: none;
+  }
+}
