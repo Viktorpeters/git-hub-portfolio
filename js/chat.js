@@ -39,21 +39,22 @@ function addTypingIndicator() {
   return el;
 }
 
-// Reveals text into a bubble word-by-word at a readable pace —
-// deliberately not instant, per the "not too fast, like ChatGPT" ask.
-function revealTextIntoBubble(
-  bubble,
-  fullText,
-  wordsPerTick = 1,
-  delayMs = 45,
-) {
+// Reveals text into a bubble one word at a time, each word fading in
+// via CSS transition rather than snapping into place instantly, so it
+// reads like a deliberate typed response rather than a fast dump.
+function revealTextIntoBubble(bubble, fullText, delayMs = 100) {
   const words = fullText.split(" ");
   let i = 0;
   return new Promise((resolve) => {
     const interval = setInterval(() => {
-      const chunk = words.slice(i, i + wordsPerTick).join(" ");
-      bubble.textContent += (i === 0 ? "" : " ") + chunk;
-      i += wordsPerTick;
+      const span = document.createElement("span");
+      span.className = "chat-word";
+      span.textContent = (i === 0 ? "" : " ") + words[i];
+      bubble.appendChild(span);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => span.classList.add("chat-word--in"));
+      });
+      i += 1;
       scrollMessagesToBottom();
       if (i >= words.length) {
         clearInterval(interval);
@@ -71,9 +72,9 @@ function openChat() {
   if (!hasIntroduced) {
     hasIntroduced = true;
     const introText =
-      "Hey, good to have you here. I build backend systems, AI systems, and cloud infrastructure — feel free to ask me anything about my work, my projects, or how to reach me.";
+      "Hey, good to have you here. I build backend systems, AI systems, and cloud infrastructure, feel free to ask me anything about my work, my projects, or how to reach me.";
     const bubble = addMessageBubble("assistant", "");
-    revealTextIntoBubble(bubble, introText, 2, 40).then(() => {
+    revealTextIntoBubble(bubble, introText, 100).then(() => {
       conversationHistory.push({ role: "assistant", content: introText });
     });
   }
@@ -123,7 +124,7 @@ if (chatForm) {
 
       typingEl.remove();
       const bubble = addMessageBubble("assistant", "");
-      await revealTextIntoBubble(bubble, reply, 2, 40);
+      await revealTextIntoBubble(bubble, reply, 100);
 
       conversationHistory.push({ role: "user", content: message });
       conversationHistory.push({ role: "assistant", content: reply });
@@ -132,7 +133,7 @@ if (chatForm) {
       typingEl.remove();
       addMessageBubble(
         "error",
-        "Couldn't reach me right now — try again in a moment, or reach out directly at +2348143324603 or victorajayidamilare@gmail.com.",
+        "Couldn't reach me right now, try again in a moment, or reach out directly at +2348143324603 or victorajayidamilare@gmail.com.",
       );
     } finally {
       chatInput.disabled = false;
