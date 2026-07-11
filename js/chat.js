@@ -1,159 +1,142 @@
 // ============================================================
-// VIKTOR AI — CHAT WIDGET
-// Ported from the Next.js ChatWidget component to vanilla JS
-// so it can run on static GitHub Pages hosting.
+// Chat widget — talks to portfolio-chat-worker on Cloudflare.
+// Reveals replies word-by-word (not real token streaming, but
+// visually the same effect) so it reads like a typed response
+// instead of dumping the whole answer in one go.
 // ============================================================
 
-// ------------------------------------------------------------
-// >>> TODO: SET THIS TO YOUR LIVE API BASE URL <<<
-// This must match a domain listed in your backend's CORS
-// `origin` array (see main.ts enableCors config), e.g.:
-//   origin: [
-//     'http://localhost:3000',
-//     'https://<your-username>.github.io'   <-- your new GitHub Pages URL
-//   ]
-// Note: victorajayidamilare.tech is going offline soon — remove it
-// from your backend's CORS origin array too, or requests from a
-// dead domain will just sit there uselessly.
-// Without the correct origin listed, the browser will block every
-// request below with a CORS error, even though the endpoint itself
-// is fine.
-// ------------------------------------------------------------
-const API_URL = "https://REPLACE-WITH-YOUR-API-DOMAIN.com";
+const CHAT_WORKER_URL =
+  "https://portfolio-chat-worker.alternativeschool073.workers.dev";
 
-(function () {
-  const bubble = document.getElementById("chatBubble");
-  const panel = document.getElementById("chatPanel");
-  const closeBtn = document.getElementById("chatClose");
-  const messagesEl = document.getElementById("chatMessages");
-  const inputEl = document.getElementById("chatInput");
-  const sendBtn = document.getElementById("chatSend");
+const chatToggle = document.getElementById("chatToggle");
+const chatPanel = document.getElementById("chatPanel");
+const chatClose = document.getElementById("chatClose");
+const chatMessages = document.getElementById("chatMessages");
+const chatForm = document.getElementById("chatForm");
+const chatInput = document.getElementById("chatInput");
 
-  let messages = [
-    {
-      role: "assistant",
-      content:
-        "Hey, I'm Viktor's AI. Ask me anything about his work, projects, or experience.",
-    },
-  ];
-  let isLoading = false;
-  let isOpen = false;
+let hasIntroduced = false;
+let conversationHistory = []; // { role: 'user'|'assistant', content: string }[]
 
-  function renderMessages() {
-    messagesEl.innerHTML = "";
-    messages.forEach((msg, i) => {
-      const bubbleEl = document.createElement("div");
-      bubbleEl.className = `chat__msg chat__msg--${msg.role}`;
+function scrollMessagesToBottom() {
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
 
-      if (
-        msg.role === "assistant" &&
-        msg.content === "" &&
-        isLoading &&
-        i === messages.length - 1
-      ) {
-        bubbleEl.innerHTML =
-          '<span class="chat__typing"><span></span><span></span><span></span></span>';
-      } else {
-        bubbleEl.textContent = msg.content;
+function addMessageBubble(role, text) {
+  const bubble = document.createElement("div");
+  bubble.className = `chat-msg chat-msg--${role}`;
+  chatMessages.appendChild(bubble);
+  scrollMessagesToBottom();
+  return bubble;
+}
+
+function addTypingIndicator() {
+  const el = document.createElement("div");
+  el.className = "chat-typing";
+  el.innerHTML = "<span></span><span></span><span></span>";
+  chatMessages.appendChild(el);
+  scrollMessagesToBottom();
+  return el;
+}
+
+// Reveals text into a bubble word-by-word at a readable pace —
+// deliberately not instant, per the "not too fast, like ChatGPT" ask.
+function revealTextIntoBubble(
+  bubble,
+  fullText,
+  wordsPerTick = 1,
+  delayMs = 45,
+) {
+  const words = fullText.split(" ");
+  let i = 0;
+  return new Promise((resolve) => {
+    const interval = setInterval(() => {
+      const chunk = words.slice(i, i + wordsPerTick).join(" ");
+      bubble.textContent += (i === 0 ? "" : " ") + chunk;
+      i += wordsPerTick;
+      scrollMessagesToBottom();
+      if (i >= words.length) {
+        clearInterval(interval);
+        resolve();
       }
-      messagesEl.appendChild(bubbleEl);
+    }, delayMs);
+  });
+}
+
+function openChat() {
+  chatPanel.classList.add("is-open");
+  chatPanel.setAttribute("aria-hidden", "false");
+  chatToggle.setAttribute("aria-expanded", "true");
+
+  if (!hasIntroduced) {
+    hasIntroduced = true;
+    const introText =
+      "Hey, good to have you here. I build backend systems, AI systems, and cloud infrastructure — feel free to ask me anything about my work, my projects, or how to reach me.";
+    const bubble = addMessageBubble("assistant", "");
+    revealTextIntoBubble(bubble, introText, 2, 40).then(() => {
+      conversationHistory.push({ role: "assistant", content: introText });
     });
-    messagesEl.scrollTop = messagesEl.scrollHeight;
   }
 
-  function openChat() {
-    isOpen = true;
-    panel.hidden = false;
-    bubble.style.display = "none";
-    renderMessages();
-    setTimeout(() => inputEl.focus(), 200);
-  }
+  setTimeout(() => chatInput.focus(), 260);
+}
 
-  function closeChat() {
-    isOpen = false;
-    panel.hidden = true;
-    bubble.style.display = "flex";
-  }
+function closeChat() {
+  chatPanel.classList.remove("is-open");
+  chatPanel.setAttribute("aria-hidden", "true");
+  chatToggle.setAttribute("aria-expanded", "false");
+}
 
-  bubble.addEventListener("click", openChat);
-  closeBtn.addEventListener("click", closeChat);
-
-  inputEl.addEventListener("input", () => {
-    inputEl.style.height = "auto";
-    inputEl.style.height = Math.min(inputEl.scrollHeight, 90) + "px";
+if (chatToggle) {
+  chatToggle.addEventListener("click", () => {
+    chatPanel.classList.contains("is-open") ? closeChat() : openChat();
   });
+}
+if (chatClose) {
+  chatClose.addEventListener("click", closeChat);
+}
 
-  inputEl.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      sendMessage();
-    }
-  });
+if (chatForm) {
+  chatForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const message = chatInput.value.trim();
+    if (!message) return;
 
-  sendBtn.addEventListener("click", sendMessage);
+    addMessageBubble("user", message);
+    chatInput.value = "";
+    chatInput.disabled = true;
 
-  async function sendMessage() {
-    const text = inputEl.value.trim();
-    if (!text || isLoading) return;
-
-    inputEl.value = "";
-    inputEl.style.height = "auto";
-
-    messages.push({ role: "user", content: text });
-    isLoading = true;
-    sendBtn.disabled = true;
-    messages.push({ role: "assistant", content: "" });
-    renderMessages();
+    const typingEl = addTypingIndicator();
 
     try {
-      const history = messages
-        .slice(1, -1)
-        .map((m) => ({ role: m.role, content: m.content }));
-
-      const response = await fetch(`${API_URL}/chat`, {
+      const res = await fetch(CHAT_WORKER_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text, history }),
+        body: JSON.stringify({ message, history: conversationHistory }),
       });
 
-      if (!response.ok) throw new Error("Request failed");
+      if (!res.ok) throw new Error("Worker request failed");
 
-      const data = await response.json();
-      const reply = data.reply || "Sorry, I didn't catch that.";
+      const data = await res.json();
+      const reply =
+        data.reply || "Sorry, I couldn't put a reply together just now.";
 
-      await revealReply(reply);
+      typingEl.remove();
+      const bubble = addMessageBubble("assistant", "");
+      await revealTextIntoBubble(bubble, reply, 2, 40);
+
+      conversationHistory.push({ role: "user", content: message });
+      conversationHistory.push({ role: "assistant", content: reply });
     } catch (err) {
-      messages[messages.length - 1] = {
-        role: "assistant",
-        content:
-          "Viktor's assistant is taking a break right now — feel free to email him directly instead.",
-      };
-      isLoading = false;
-      sendBtn.disabled = false;
-      renderMessages();
+      console.error("Chat request failed:", err);
+      typingEl.remove();
+      addMessageBubble(
+        "error",
+        "Couldn't reach me right now — try again in a moment, or reach out directly at +2348143324603 or victorajayidamilare@gmail.com.",
+      );
+    } finally {
+      chatInput.disabled = false;
+      chatInput.focus();
     }
-  }
-
-  function revealReply(fullText) {
-    return new Promise((resolve) => {
-      let i = 0;
-      const interval = setInterval(() => {
-        if (i <= fullText.length) {
-          messages[messages.length - 1] = {
-            role: "assistant",
-            content: fullText.slice(0, i),
-          };
-          renderMessages();
-          i++;
-        } else {
-          clearInterval(interval);
-          isLoading = false;
-          sendBtn.disabled = false;
-          resolve();
-        }
-      }, 12);
-    });
-  }
-
-  renderMessages();
-})();
+  });
+}
