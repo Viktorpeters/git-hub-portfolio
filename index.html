@@ -241,146 +241,128 @@
         </div>
       </section>
 
-      <!-- PROJECTS -->
+      <!-- PROJECTS: one tab per year. Unlaunched products show only
+           their stack and a countdown; details go live on launch day. -->
       <section id="projects" class="section">
         <h2 class="section__title">Projects</h2>
-        <div class="projects">
-          <article class="project-card project-card--logo">
-            <div class="project-card__img-wrap">
-              <img
-                src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1782660457/ca-removebg-preview_zdrvwd.png"
-                alt="Cardly logo"
-                loading="lazy"
-              />
-            </div>
-            <div class="project-card__body">
-              <h3>Cardly</h3>
-              <p>
-                New product currently in build, including a hand-crafted brand
-                identity and wordmark.
-              </p>
-              <ul class="tag-list tag-list--sm">
-                <li>In development</li>
-              </ul>
-              <a href="https://cardly.ng" target="_blank" rel="noopener"
-                >Visit site →</a
-              >
-            </div>
-          </article>
+        <p class="projects__lede">
+          I run Orion Learning Innovations, a small edtech firm. Our aim:
+          remote learning that feels like a real classroom, education that is
+          not tied to one place, and assessment that goes beyond the computer
+          based test.
+        </p>
 
-          <article class="project-card">
-            <img
-              src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1782773212/cc_duxaoo.png"
-              alt="Zélie AI French tutor"
-              loading="lazy"
-            />
+        <div class="year-tabs" role="tablist" aria-label="Projects by year">
+          <button class="year-tab" role="tab" aria-selected="false" aria-controls="year-2025" id="tab-2025" data-year="2025">2025</button>
+          <button class="year-tab" role="tab" aria-selected="true" aria-controls="year-2026" id="tab-2026" data-year="2026">2026</button>
+          <button class="year-tab" role="tab" aria-selected="false" aria-controls="year-2027" id="tab-2027" data-year="2027">2027</button>
+        </div>
+
+        <!-- 2025 -->
+        <div class="projects year-panel" id="year-2025" role="tabpanel" aria-labelledby="tab-2025" hidden>
+          <article class="project-card project-card--text-only">
             <div class="project-card__body">
-              <h3>Zélie — AI French Tutor</h3>
+              <span class="status">Delivered</span>
+              <h3>GIZ AI Engineering Bootcamp</h3>
               <p>
-                An agentic tutor that reasons over multiple steps, not just RAG
-                lookup — grounded in the learner's own progress and a CLB rubric
-                for TEF/TCF prep. Runs on open-source models via Hugging Face to
-                keep inference costs sustainable at scale.
+                Designed and taught a one-month AI engineering programme,
+                sponsored by GIZ, for a mixed-skill cohort: from first API to a
+                working RAG chatbot each learner shipped.
               </p>
               <ul class="tag-list tag-list--sm">
-                <li>NestJS</li>
-                <li>Agentic AI</li>
+                <li>Curriculum design</li>
                 <li>RAG</li>
-                <li>Open-source LLMs</li>
+                <li>Teaching</li>
               </ul>
-              <a
-                href="https://frenchwithzelie.io"
-                target="_blank"
-                rel="noopener"
-                >Visit site →</a
-              >
-            </div>
-          </article>
-
-          <article class="project-card">
-            <img
-              src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1783594135/qq_xaq3hu.png"
-              alt="Parcel Coast"
-              loading="lazy"
-            />
-            <div class="project-card__body">
-              <h3>Parcel Coast</h3>
-              <p>
-                Ecommerce &amp; logistics platform with Chinedu, a multimodal AI
-                agent — chat to check product availability, or attach a photo of
-                what you're looking for. Backend built in Go for seamless
-                horizontal scaling.
-              </p>
-              <ul class="tag-list tag-list--sm">
-                <li>Go</li>
-                <li>Agentic AI</li>
-                <li>Multimodal</li>
-              </ul>
-              <a href="https://parcelcoast.com" target="_blank" rel="noopener"
-                >Visit site →</a
-              >
-            </div>
-          </article>
-
-          <article class="project-card">
-            <img
-              src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1765997742/t1_dznrgp.png"
-              alt="AlternativeSchool.Live"
-              loading="lazy"
-            />
-            <div class="project-card__body">
-              <h3>AlternativeSchool.Live</h3>
-              <p>
-                Remote-learning platform with an AI Counsellor (RAG) that knows
-                each student's grades, attempts, and weak areas.
-              </p>
-              <ul class="tag-list tag-list--sm">
-                <li>Next.js</li>
-                <li>RAG</li>
-                <li>MongoDB</li>
-              </ul>
-              <a
-                href="https://alternativeschool.com"
-                target="_blank"
-                rel="noopener"
-                >Visit site →</a
-              >
-            </div>
-          </article>
-
-          <article class="project-card">
-            <img
-              src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1781530593/t5_cokqwj.png"
-              alt="TechFacilitators Mentorship Platform"
-              loading="lazy"
-            />
-            <div class="project-card__body">
-              <h3>TechFacilitators Mentorship</h3>
-              <p>
-                Mentorship platform for teenagers learning real engineering,
-                with an auto-grading Skill-Review Engine.
-              </p>
-              <ul class="tag-list tag-list--sm">
-                <li>Next.js</li>
-                <li>PostgreSQL</li>
-                <li>AI grading</li>
-              </ul>
-              <a
-                href="https://mentorship.techfacilitators.com"
-                target="_blank"
-                rel="noopener"
-                >Visit site →</a
-              >
             </div>
           </article>
         </div>
+
+        <!-- 2026 -->
+        <div class="projects year-panel" id="year-2026" role="tabpanel" aria-labelledby="tab-2026">
+          <article class="project-card project-card--logo">
+            <div class="project-card__img-wrap">
+              <img src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1791300815/cardly-logo-light_oeyglx.svg" alt="Cardly logo" loading="lazy" />
+            </div>
+            <div class="project-card__body">
+              <span class="status status--live">Live</span>
+              <h3>Cardly</h3>
+              <p>
+                Result cards and school management for Nigerian schools. The
+                first product from Orion Learning Innovations.
+              </p>
+              <ul class="tag-list tag-list--sm">
+                <li>Next.js</li>
+                <li>NestJS</li>
+                <li>PostgreSQL</li>
+              </ul>
+              <a href="https://cardly.ng" target="_blank" rel="noopener">Visit cardly.ng →</a>
+            </div>
+          </article>
+
+          <article class="project-card project-card--logo">
+            <div class="project-card__img-wrap">
+              <img src="images/boardsheet-logo.svg" alt="Board Sheet logo" loading="lazy" />
+            </div>
+            <div class="project-card__body">
+              <span class="status">Launching 25 Nov 2026</span>
+              <h3>Board Sheet</h3>
+              <p>A new teaching tool. Details open on launch day.</p>
+              <p class="countdown" data-launch="2026-11-25T09:00:00+01:00"></p>
+              <ul class="tag-list tag-list--sm">
+                <li>TypeScript</li>
+                <li>Go</li>
+                <li>Real-time stroke engine</li>
+                <li>Built-in screen recording</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="project-card project-card--logo">
+            <div class="project-card__img-wrap project-card__img-wrap--dark">
+              <img src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1793283382/icon-192_mpenwf.png" alt="The Laws of Ruin logo" loading="lazy" />
+            </div>
+            <div class="project-card__body">
+              <span class="status">Early bird 10 Nov · Live 7 Dec 2026</span>
+              <h3>The Laws of Ruin</h3>
+              <p>
+                Investigations into how powerful people rose, ruled and fell,
+                for those who seek power and those who must keep it. A book
+                built as its own phone app: page-curl reader, tap-to-explain
+                names, and a book you can ask questions.
+              </p>
+              <ul class="tag-list tag-list--sm">
+                <li>Next.js</li>
+                <li>Express</li>
+                <li>PostgreSQL</li>
+                <li>Paystack</li>
+                <li>PWA</li>
+              </ul>
+              <a href="https://lawofruin.io" target="_blank" rel="noopener">Visit lawofruin.io →</a>
+            </div>
+          </article>
+        </div>
+
+        <!-- 2027 -->
+        <div class="projects year-panel" id="year-2027" role="tabpanel" aria-labelledby="tab-2027" hidden>
+          <article class="project-card project-card--text-only project-card--masked">
+            <div class="project-card__body">
+              <span class="status">Unlocks 28 Feb 2027</span>
+              <h3>XXXXXX</h3>
+              <p>Health tech. More on unlock day.</p>
+              <p class="countdown" data-launch="2027-02-28T09:00:00+01:00"></p>
+            </div>
+          </article>
+          <article class="project-card project-card--text-only">
+            <div class="project-card__body">
+              <h3>More to follow</h3>
+              <p>The next products are already in the works.</p>
+            </div>
+          </article>
+        </div>
+
         <div class="section__more">
-          <a
-            href="https://github.com/Viktorpeters"
-            target="_blank"
-            rel="noopener"
-            >See more on GitHub →</a
-          >
+          <a href="https://github.com/Viktorpeters" target="_blank" rel="noopener">See more on GitHub →</a>
         </div>
       </section>
 
@@ -388,6 +370,16 @@
       <section id="experience" class="section">
         <h2 class="section__title">Experience</h2>
         <div class="timeline">
+          <div class="timeline__row">
+            <div class="timeline__meta">2026 – Present</div>
+            <div class="timeline__body">
+              <h3>Founder <span class="at">· Orion Learning Innovations</span></h3>
+              <p>
+                Edtech firm behind Cardly (live) and Board Sheet (launching
+                November 2026). Product, architecture and engineering lead.
+              </p>
+            </div>
+          </div>
           <div class="timeline__row">
             <div class="timeline__meta">Mar 2026 – Present</div>
             <div class="timeline__body">
@@ -403,57 +395,51 @@
             <div class="timeline__body">
               <h3>Backend Developer <span class="at">· LiteParcel</span></h3>
               <p>
-                Logistics platform in Go — microservices for tracking, routing,
-                delivery management.
+                Logistics platform in Go: microservices for tracking, routing
+                and delivery management.
               </p>
             </div>
           </div>
           <div class="timeline__row">
             <div class="timeline__meta">May 2025 – Nov 2025</div>
             <div class="timeline__body">
-              <h3>
-                Full Stack / Backend Engineer
-                <span class="at">· Bolrach Technologies</span>
-              </h3>
+              <h3>Full Stack / Backend Engineer <span class="at">· Bolrach Technologies</span></h3>
               <p>
-                AI-powered dating app, 10,000+ active users, real-time messaging
-                and payments.
+                AI-powered dating app, 10,000+ active users, real-time
+                messaging and payments.
               </p>
             </div>
           </div>
           <div class="timeline__row">
             <div class="timeline__meta">Jan 2025 – May 2025</div>
             <div class="timeline__body">
-              <h3>
-                Lead Developer / DevOps
-                <span class="at">· Kloud6 Technologies</span>
-              </h3>
-              <p>
-                Ecommerce, fintech, and enterprise clients — cloud infra, CI/CD.
-              </p>
+              <h3>Lead Developer / DevOps <span class="at">· Kloud6 Technologies</span></h3>
+              <p>Ecommerce, fintech and enterprise clients: cloud infrastructure, CI/CD.</p>
             </div>
           </div>
           <div class="timeline__row">
             <div class="timeline__meta">Jun 2024 – Dec 2024</div>
             <div class="timeline__body">
-              <h3>
-                Full Stack / Mobile Developer
-                <span class="at">· LesGilles Ltd</span>
-              </h3>
-              <p>
-                Web and cross-platform mobile apps for ecommerce, healthcare,
-                finance clients.
-              </p>
+              <h3>Full Stack / Mobile Developer <span class="at">· LesGilles Ltd</span></h3>
+              <p>Web and cross-platform mobile apps for ecommerce, healthcare and finance clients.</p>
             </div>
           </div>
           <div class="timeline__row">
-            <div class="timeline__meta">Volunteer</div>
+            <div class="timeline__meta">2025</div>
             <div class="timeline__body">
-              <h3>
-                Python Instructor
-                <span class="at">· Germany Immigration Institute</span>
-              </h3>
-              <p>Community-service programming instruction.</p>
+              <h3>AI Engineering Instructor <span class="at">· GIZ-sponsored bootcamp</span></h3>
+              <p>Designed and taught a one-month AI engineering programme.</p>
+            </div>
+          </div>
+          <div class="timeline__row">
+            <div class="timeline__meta">10 years</div>
+            <div class="timeline__body">
+              <h3>Physics &amp; Further Mathematics Teacher</h3>
+              <p>
+                A decade in real classrooms, including lead roles, before
+                engineering. B.Eng Electrical Engineering, then a second degree
+                in AI Engineering.
+              </p>
             </div>
           </div>
         </div>
@@ -605,5 +591,6 @@
 
     <script src="js/main.js"></script>
     <script src="js/chat.js"></script>
+    <script src="js/projects.js"></script>
   </body>
 </html>
