@@ -36,6 +36,7 @@
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
         <a href="#experience">Experience</a>
+        <a href="cv/">CV</a>
         <a href="#contact" class="topbar__cta">Contact</a>
       </nav>
       <button
@@ -66,7 +67,8 @@
       <a href="#skills" class="drawer__link"><span>01</span>Skills</a>
       <a href="#projects" class="drawer__link"><span>02</span>Projects</a>
       <a href="#experience" class="drawer__link"><span>03</span>Experience</a>
-      <a href="#contact" class="drawer__link"><span>04</span>Contact</a>
+      <a href="cv/" class="drawer__link"><span>04</span>CV</a>
+      <a href="#contact" class="drawer__link"><span>05</span>Contact</a>
       <div class="drawer__social">
         <a href="https://github.com/Viktorpeters" target="_blank" rel="noopener"
           >GitHub</a
@@ -195,61 +197,109 @@
         <h2 class="section__title">Skills</h2>
         <div class="skills">
           <div class="skill-group">
-            <h3>Backend &amp; Systems</h3>
+            <h3>Languages</h3>
             <ul class="tag-list">
-              <li>Node.js / Express</li>
-              <li>NestJS</li>
               <li>Go</li>
+              <li>TypeScript</li>
+              <li>JavaScript</li>
+              <li>Python</li>
+              <li>SQL</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Go</h3>
+            <ul class="tag-list">
+              <li>Gin</li>
+              <li>Echo</li>
+              <li>Goroutines and channels</li>
+              <li>Worker pools</li>
+              <li>Context cancellation</li>
+              <li>gRPC</li>
+              <li>REST</li>
               <li>Microservices</li>
-              <li>Event-driven design</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Node.js</h3>
+            <ul class="tag-list">
+              <li>NestJS</li>
+              <li>Express</li>
+              <li>Fastify</li>
+              <li>Socket.io</li>
+              <li>Prisma ORM</li>
+              <li>REST and GraphQL APIs</li>
+              <li>Jest</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Frontend</h3>
+            <ul class="tag-list">
+              <li>React</li>
+              <li>Next.js (App Router)</li>
+              <li>TanStack Query</li>
+              <li>CSS Modules</li>
+              <li>PWA and offline-first</li>
+              <li>Capacitor</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Data &amp; messaging</h3>
+            <ul class="tag-list">
               <li>PostgreSQL</li>
               <li>Redis</li>
+              <li>MongoDB</li>
+              <li>SQLite</li>
+              <li>Supabase</li>
+              <li>RabbitMQ / LavinMQ</li>
+              <li>pgvector</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Payments &amp; security</h3>
+            <ul class="tag-list">
+              <li>Stripe (subscriptions, webhooks)</li>
+              <li>Paystack</li>
+              <li>OAuth 2.0</li>
+              <li>JWT</li>
+              <li>RBAC</li>
+              <li>Rate limiting</li>
+              <li>PCI-DSS practices</li>
             </ul>
           </div>
           <div class="skill-group">
             <h3>Cloud &amp; DevOps</h3>
             <ul class="tag-list">
-              <li>AWS</li>
-              <li>Google Cloud</li>
-              <li>DigitalOcean</li>
+              <li>AWS (EC2, S3, RDS, Lambda, CloudFront)</li>
+              <li>GCP</li>
               <li>Docker</li>
-              <li>CI/CD</li>
-              <li>Nginx / HAProxy</li>
-              <li>Cloudflare</li>
+              <li>GitHub Actions</li>
+              <li>Nginx</li>
+              <li>PM2</li>
+              <li>Cloudflare Workers</li>
             </ul>
           </div>
           <div class="skill-group">
-            <h3>AI &amp; RAG</h3>
+            <h3>AI</h3>
             <ul class="tag-list">
-              <li>Agentic AI systems</li>
-              <li>RAG architectures</li>
-              <li>Vector DBs (Pinecone, Weaviate)</li>
-              <li>Open-source LLMs via Hugging Face (Llama, Mixtral)</li>
-              <li>Claude / GPT-4 (complex reasoning)</li>
-            </ul>
-          </div>
-          <div class="skill-group">
-            <h3>Security &amp; Quality</h3>
-            <ul class="tag-list">
-              <li>OWASP Top 10</li>
-              <li>JWT / OAuth</li>
-              <li>Pen testing</li>
-              <li>Rate limiting</li>
-              <li>Data structures &amp; algorithms</li>
+              <li>Anthropic Claude API</li>
+              <li>OpenAI</li>
+              <li>RAG</li>
+              <li>Vector search</li>
+              <li>Hugging Face open-source models</li>
             </ul>
           </div>
         </div>
       </section>
 
-      <!-- PROJECTS: one tab per year. Unlaunched products show only
-           their stack and a countdown; details go live on launch day. -->
+      <!-- PROJECTS: one tab per year. Mirrors the CV word for word.
+           Products not yet released show only their stack. -->
       <section id="projects" class="section">
         <h2 class="section__title">Projects</h2>
         <p class="projects__lede">
-          I run Orion Learning Innovations, a small edtech firm. Our aim:
-          remote learning that feels like a real classroom, education that is
-          not tied to one place, and assessment that goes beyond the computer
-          based test.
+          I run Orion Learning Innovations, the edtech firm behind Cardly. Our
+          aim: remote learning that feels like a real classroom, education
+          that is not tied to one place, and assessment that goes beyond the
+          computer based test.
         </p>
 
         <div class="year-tabs" role="tablist" aria-label="Projects by year">
@@ -263,16 +313,17 @@
           <article class="project-card project-card--text-only">
             <div class="project-card__body">
               <span class="status">Delivered</span>
-              <h3>GIZ AI Engineering Bootcamp</h3>
+              <h3>GIZ AI Engineering Programme</h3>
               <p>
-                Designed and taught python and  AI engineering programme,
-                sponsored by GIZ, for a mixed-skill cohort: from first API to a
-                working RAG chatbot each learner shipped to immigrants through the period of 10months on the side while working full time remote.
+                Instructor on a GIZ-sponsored empowerment programme: taught AI
+                engineering to mixed-skill cohorts, each student shipping their
+                own chatbot.
               </p>
               <ul class="tag-list tag-list--sm">
-                <li>Curriculum design</li>
-                <li>RAG</li>
-                <li>Teaching</li>
+                <li>React</li>
+                <li>Express</li>
+                <li>Hugging Face</li>
+                <li>OpenAI</li>
               </ul>
             </div>
           </article>
@@ -280,41 +331,35 @@
 
         <!-- 2026 -->
         <div class="projects year-panel" id="year-2026" role="tabpanel" aria-labelledby="tab-2026">
-          <article class="project-card project-card--logo">
+          <article class="project-card project-card--logo project-card--wide">
             <div class="project-card__img-wrap">
               <img src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1791300815/cardly-logo-light_oeyglx.svg" alt="Cardly logo" loading="lazy" />
             </div>
             <div class="project-card__body">
-              <span class="status status--live">Live</span>
+              <span class="status status--live">v1 Live</span>
               <h3>Cardly</h3>
-              <p>
-                Result cards and school management for Nigerian schools. The
-                first product from Orion Learning Innovations.
-              </p>
+              <p>AI academic reporting platform for Nigerian schools, built with a team of 6.</p>
+              <ul class="points">
+                <li><strong>Department guidance (AI):</strong> reads a JSS 3 student's full record (every term's results, the Mocks and behaviour ratings) and writes a personalised SS 1 department recommendation, Science, Art or Commercial, with the reasons and a parents' sign-off page. Cardly computes every figure; the AI writes the words.</li>
+                <li><strong>Cardly AI remarks:</strong> drafts a whole class's report card remarks in seconds, in the school's chosen tone (Gemini with Groq fallback, cached so the same scores always give the same draft); the principal reads, edits and keeps them in one tap.</li>
+                <li><strong>Result engine:</strong> score entry with submit, approve and send back; WAEC-modelled marking; CA, mid-term, end of term and Mock reports (SS 3 WAEC breakdown, JSS 3 combined subjects, Mock averages); promotion and a session rollover that moves every school up at once, keeping each child's class history.</li>
+                <li><strong>Results nobody can fake:</strong> every report card and transcript is sealed with an Ed25519-signed QR anyone can scan to verify; parents are told on WhatsApp and SMS the moment results are approved, with transcripts and result queries handled in-app.</li>
+                <li><strong>Built to scale:</strong> Next.js with Express / TypeScript / Prisma / PostgreSQL, real-time Socket.io sync across every role, background job queues, and an offline-first app on web, iOS and Android.</li>
+              </ul>
+              <ol class="roadmap">
+                <li><span>v1</span><span>Schools: AI academic reporting, sealed results, parents on WhatsApp</span><span class="status--live">Live</span></li>
+                <li><span>v2</span><span>Cardly for everyone: organisations and individuals seal their own documents with the same signed QR, so anyone can verify they are authentic</span><span>January 2027</span></li>
+                <li><span>v3</span><span>Tertiary institutions: courses, credit units, GPA and CGPA, sealed transcripts</span><span>April 2027</span></li>
+              </ol>
               <ul class="tag-list tag-list--sm">
                 <li>Next.js</li>
-                <li>NestJS</li>
+                <li>Express</li>
+                <li>TypeScript</li>
+                <li>Prisma</li>
                 <li>PostgreSQL</li>
+                <li>Socket.io</li>
               </ul>
               <a href="https://cardly.ng" target="_blank" rel="noopener">Visit cardly.ng →</a>
-            </div>
-          </article>
-
-          <article class="project-card project-card--logo">
-            <div class="project-card__img-wrap">
-              <img src="images/boardsheet-logo.svg" alt="Board Sheet logo" loading="lazy" />
-            </div>
-            <div class="project-card__body">
-              <span class="status">Launching 25 Nov 2026</span>
-              <h3>Board Sheet</h3>
-              <p>A new teaching tool. Details open on launch day.</p>
-              <p class="countdown" data-launch="2026-11-25T09:00:00+01:00"></p>
-              <ul class="tag-list tag-list--sm">
-                <li>TypeScript</li>
-                <li>Go</li>
-                <li>Real-time stroke engine</li>
-                <li>Built-in screen recording</li>
-              </ul>
             </div>
           </article>
 
@@ -323,40 +368,80 @@
               <img src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1793283382/icon-192_mpenwf.png" alt="The Laws of Ruin logo" loading="lazy" />
             </div>
             <div class="project-card__body">
-              <span class="status">Early bird 10 Nov · Live 7 Dec 2026</span>
+              <span class="status">Early bird sales open 10 November 2026</span>
               <h3>The Laws of Ruin</h3>
+              <p>Investigations into how powerful people rose, ruled and fell, for those who seek power and those who must keep it.</p>
               <p>
-                Investigations into how powerful people rose, ruled and fell,
-                for those who seek power and those who must keep it. A book
-                built as its own phone app: page-curl reader, tap-to-explain
-                names, and a book you can ask questions.
+                A study, in the style of The 48 Laws of Power, of the decisions
+                that brought down kings, cartels and empires. It is written to
+                educate: to show, law by law, the tipping point where power
+                turns on the people who hold it. Investigation I, The Fall of
+                Kings, releases first; II, The Thrones, and III, The Soldiers,
+                follow.
               </p>
+              <ul class="points">
+                <li><strong>Every law in 12 parts:</strong> the law, the judgment, the transgression, the interpretation, parallels, the cost, keys, the reversal, and The Record, which separates verified facts from disputed ones, with numbered sources.</li>
+                <li><strong>A reader built for it:</strong> an installable phone app with pages that turn like a real book, offline reading, and no PDF downloads, so the work stays protected.</li>
+                <li><strong>Ask the book:</strong> a RAG assistant answers questions about the text and cites the exact pages, with chips that jump straight to them.</li>
+              </ul>
               <ul class="tag-list tag-list--sm">
                 <li>Next.js</li>
                 <li>Express</li>
                 <li>PostgreSQL</li>
                 <li>Paystack</li>
-                <li>PWA</li>
               </ul>
-               <!-- <a href="https://lawofruin.io" target="_blank" rel="noopener">Visit lawofruin.io →</a>  -->
+            </div>
+          </article>
+
+          <article class="project-card project-card--text-only">
+            <div class="project-card__body">
+              <span class="status">In development</span>
+              <h3>ClinikIQ</h3>
+              <p>A health product under Six Initiatives, our sister company.</p>
+              <ul class="tag-list tag-list--sm">
+                <li>Go</li>
+                <li>Python</li>
+                <li>Next.js</li>
+                <li>React Native</li>
+                <li>PostgreSQL + pgvector</li>
+                <li>Redis</li>
+                <li>RAG</li>
+                <li>Speech recognition</li>
+                <li>LLM APIs</li>
+                <li>Docker</li>
+                <li>GCP</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="project-card project-card--text-only">
+            <div class="project-card__body">
+              <h3>More to follow</h3>
+              <p>More products are lined up and will follow once these ship.</p>
             </div>
           </article>
         </div>
 
         <!-- 2027 -->
         <div class="projects year-panel" id="year-2027" role="tabpanel" aria-labelledby="tab-2027" hidden>
-          <article class="project-card project-card--text-only project-card--masked">
+          <article class="project-card project-card--text-only">
             <div class="project-card__body">
-              <span class="status">Unlocks 28 Feb 2027</span>
-              <h3>XXXXXX</h3>
-              <p>Health tech. More on unlock day.</p>
-              <p class="countdown" data-launch="2027-02-28T09:00:00+01:00"></p>
+              <span class="status">January 2027</span>
+              <h3>Cardly v2, for everyone</h3>
+              <p>Organisations and individuals seal their own documents with the same signed QR, so anyone can verify they are authentic.</p>
+            </div>
+          </article>
+          <article class="project-card project-card--text-only">
+            <div class="project-card__body">
+              <span class="status">April 2027</span>
+              <h3>Cardly v3, tertiary institutions</h3>
+              <p>Courses, credit units, GPA and CGPA, sealed transcripts.</p>
             </div>
           </article>
           <article class="project-card project-card--text-only">
             <div class="project-card__body">
               <h3>More to follow</h3>
-              <p>The next products are already in the works.</p>
+              <p>More products are lined up and will follow once these ship.</p>
             </div>
           </article>
         </div>
@@ -366,7 +451,7 @@
         </div>
       </section>
 
-      <!-- EXPERIENCE -->
+      <!-- EXPERIENCE: same roles, dates and bullets as the CV -->
       <section id="experience" class="section">
         <h2 class="section__title">Experience</h2>
         <div class="timeline">
@@ -374,70 +459,114 @@
             <div class="timeline__meta">2026 – Present</div>
             <div class="timeline__body">
               <h3>Founder <span class="at">· Orion Learning Innovations</span></h3>
-              <p>
-                Edtech firm behind Cardly (live) and Board Sheet (launching
-                November 2026). Product, architecture and engineering lead.
-              </p>
+              <p class="sub">Lagos · Edtech firm behind Cardly</p>
+              <ul>
+                <li>Founded and lead an edtech company that has launched its first product, Cardly, an AI academic reporting platform live in Nigerian schools, and is building its next.</li>
+                <li>Own product, architecture and engineering across the company, from first design and data model through to deployment and the roadmap for every product we ship.</li>
+              </ul>
             </div>
           </div>
           <div class="timeline__row">
             <div class="timeline__meta">Mar 2026 – Present</div>
             <div class="timeline__body">
               <h3>Full Stack Engineer <span class="at">· Jura</span></h3>
-              <p>
-                Irish law exam-prep platform: AI essay grading, Stripe billing,
-                media pipeline for 269 podcast episodes.
-              </p>
+              <p class="sub">Remote · Irish law exam-prep SaaS, built from the ground up</p>
+              <ul>
+                <li>Architected the Node.js / Express / TypeScript API on GCP (europe-west1) with Prisma and Supabase PostgreSQL, serving a live product for Irish law students.</li>
+                <li>Built the Stripe integration end to end: webhooks driving the full subscription lifecycle (trial, standard, pro, freemium) and middleware that gates content by plan.</li>
+                <li>Built an AI essay-grading engine on the Anthropic Claude API that marks answers with the IRAC legal method and returns bands, feedback and model answers.</li>
+                <li>Ran a multi-schema content pipeline seeding 2,550+ MCQs and 3,500+ past questions across 255 lessons and 8 subjects, with separate dev and production scripts.</li>
+                <li>Built the media pipeline for 269 podcast episodes and migrated the whole library between Cloudinary accounts, and the production database from DigitalOcean to Supabase, both with zero downtime.</li>
+                <li>Cut hosting cost by running 4 production apps on one GCP VM with PM2 cluster mode and Nginx; now moving workloads onto AWS (S3 first) for scale and reliability.</li>
+              </ul>
             </div>
           </div>
           <div class="timeline__row">
             <div class="timeline__meta">Nov 2025 – Mar 2026</div>
             <div class="timeline__body">
-              <h3>Backend Developer <span class="at">· LiteParcel</span></h3>
-              <p>
-                Logistics platform in Go: microservices for tracking, routing
-                and delivery management.
-              </p>
+              <h3>Backend Developer (Go) <span class="at">· LiteParcel</span></h3>
+              <p class="sub">Remote · Logistics platform, built from the ground up</p>
+              <ul>
+                <li>Built the core backend services in Go (Gin / Echo) for order processing, delivery scheduling, package tracking and driver management.</li>
+                <li>Used goroutines, channels and bounded worker pools to handle high volumes of concurrent tracking and dispatch requests without blocking the API.</li>
+                <li>Designed REST and gRPC services for real-time package tracking, and split the system into microservices along order, inventory and delivery boundaries.</li>
+                <li>Modelled PostgreSQL schemas for logistics operations with geospatial queries; added Redis caching that improved API response times by 45%.</li>
+                <li>Set up JWT auth with role-based access control and CI/CD with GitHub Actions and Docker.</li>
+              </ul>
             </div>
           </div>
           <div class="timeline__row">
             <div class="timeline__meta">May 2025 – Nov 2025</div>
             <div class="timeline__body">
               <h3>Full Stack / Backend Engineer <span class="at">· Bolrach Technologies</span></h3>
-              <p>
-                AI-powered dating app, 10,000+ active users, real-time
-                messaging and payments.
-              </p>
+              <p class="sub">Remote · AI-powered dating app</p>
+              <ul>
+                <li>Architected the Node.js / Express REST APIs behind 10,000+ active users, with real-time messaging.</li>
+                <li>Integrated Stripe and Paystack payments following PCI-DSS practices, and AI conversation features that lifted engagement by 35%.</li>
+                <li>Added Redis caching (API responses 50% faster) and S3 + CloudFront for media (image loads 60% faster); CI/CD cut deploys from 2 hours to 15 minutes.</li>
+              </ul>
             </div>
           </div>
           <div class="timeline__row">
             <div class="timeline__meta">Jan 2025 – May 2025</div>
             <div class="timeline__body">
               <h3>Lead Developer / DevOps <span class="at">· Kloud6 Technologies</span></h3>
-              <p>Ecommerce, fintech and enterprise clients: cloud infrastructure, CI/CD.</p>
+              <p class="sub">On-site · Ecommerce, fintech and enterprise clients</p>
+              <ul>
+                <li>Led an ecommerce build on React, Node.js and PostgreSQL, improving page load times by 35%.</li>
+                <li>Built REST and GraphQL APIs for a fintech application, reducing data retrieval times by 40%.</li>
+                <li>Ran AWS infrastructure (EC2, S3, RDS) at 25% lower cost; automated deploys with Docker and Jenkins, halving deployment time.</li>
+              </ul>
             </div>
           </div>
           <div class="timeline__row">
             <div class="timeline__meta">Jun 2024 – Dec 2024</div>
             <div class="timeline__body">
               <h3>Full Stack / Mobile Developer <span class="at">· LesGilles Ltd</span></h3>
-              <p>Web and cross-platform mobile apps for ecommerce, healthcare and finance clients.</p>
+              <p class="sub">On-site · Intern</p>
+              <ul>
+                <li>Built React / Node.js / MongoDB web apps and Flutter mobile apps for ecommerce, healthcare and finance clients, with Firebase services.</li>
+              </ul>
             </div>
           </div>
+        </div>
+
+        <h3 class="subsection__title">Teaching &amp; leadership</h3>
+        <div class="timeline">
           <div class="timeline__row">
             <div class="timeline__meta">2025</div>
             <div class="timeline__body">
-              <h3>AI Engineering Instructor <span class="at">· GIZ-sponsored bootcamp</span></h3>
-              <p>Designed and taught python and AI engineering programme for the period of 10months on the side while working full time remote.</p>
+              <h3>Instructor <span class="at">· GIZ-sponsored empowerment programme</span></h3>
+              <p>Taught AI engineering (React, Express, Hugging Face, OpenAI) to mixed-skill cohorts, each student shipping their own chatbot.</p>
             </div>
           </div>
           <div class="timeline__row">
             <div class="timeline__meta">10 years</div>
             <div class="timeline__body">
               <h3>Physics &amp; Further Mathematics Teacher</h3>
-              <p>
-                A decade in real classrooms, including lead roles .
-              </p>
+              <p>10 years teaching Physics and Further Mathematics before moving into engineering; held lead roles in former and current teams.</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="subsection__title">Education &amp; certification</h3>
+        <div class="timeline">
+          <div class="timeline__row">
+            <div class="timeline__meta">2015 – 2017</div>
+            <div class="timeline__body">
+              <h3>HND, Electrical and Electronics Engineering <span class="at">· Federal Polytechnic Ado Ekiti</span></h3>
+            </div>
+          </div>
+          <div class="timeline__row">
+            <div class="timeline__meta">2011 – 2013</div>
+            <div class="timeline__body">
+              <h3>ND, Electrical and Electronics Engineering <span class="at">· Federal Polytechnic Ado Ekiti</span></h3>
+            </div>
+          </div>
+          <div class="timeline__row">
+            <div class="timeline__meta">In progress</div>
+            <div class="timeline__body">
+              <h3>AWS Certified Solutions Architect – Associate</h3>
             </div>
           </div>
         </div>
