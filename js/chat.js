@@ -134,7 +134,7 @@ if (chatForm) {
       typingEl.remove();
       addMessageBubble(
         "error",
-        "Couldn't reach me right now, try again in a moment, or reach out directly at +2348143324603 or victorajayidamilare@gmail.com.",
+        "Couldn't reach me right now, try again in a moment, or reach out directly on WhatsApp at +2348104631966 or victorajayidamilare@gmail.com.",
       );
     } finally {
       chatInput.disabled = false;
