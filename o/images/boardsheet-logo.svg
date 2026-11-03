@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">
+  <defs>
+    <linearGradient id="barrel" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0f1b3d"/>
+      <stop offset="0.35" stop-color="#2d4fc0"/>
+      <stop offset="0.55" stop-color="#6f8ee8"/>
+      <stop offset="0.75" stop-color="#1f3fa6"/>
+      <stop offset="1" stop-color="#0b1430"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6b6f78"/>
+      <stop offset="0.45" stop-color="#f4f5f7"/>
+      <stop offset="0.7" stop-color="#b9bcc4"/>
+      <stop offset="1" stop-color="#55585f"/>
+    </linearGradient>
+    <linearGradient id="nib" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8a6a1e"/>
+      <stop offset="0.5" stop-color="#f3d27a"/>
+      <stop offset="1" stop-color="#7a5a14"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.6"/>
+      <feOffset dx="1.8" dy="2.2"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.35"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="22" fill="#FBFAF6" stroke="#DCD8CC" stroke-width="1.5"/>
+  <line x1="10" y1="40" x2="86" y2="40" stroke="#9DBDE6" stroke-width="1.6"/>
+  <line x1="10" y1="64" x2="86" y2="64" stroke="#9DBDE6" stroke-width="1.6"/>
+  <line x1="27" y1="10" x2="27" y2="86" stroke="#D9473A" stroke-width="2.2"/>
+  <!-- the infinity, written in blue ink, ending at the nib -->
+  <path d="M46 70 C40 62 31 62 31 70 C31 78 40 78 46 70 C52 62 61 62 61 70 C61 76 56 77 52 75"
+        fill="none" stroke="#1F3FA6" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- the pen, tip resting where the stroke ends -->
+  <g filter="url(#shadow)" transform="translate(52 75) rotate(38) translate(-5 -60)">
+    <path d="M5 60 L1.8 47 L8.2 47 Z" fill="url(#nib)"/>
+    <line x1="5" y1="58" x2="5" y2="50" stroke="#5a420e" stroke-width="0.7"/>
+    <rect x="1.2" y="43" width="7.6" height="4.5" rx="1" fill="url(#metal)"/>
+    <rect x="0.6" y="10" width="8.8" height="33.5" rx="2.2" fill="url(#barrel)"/>
+    <rect x="0.4" y="14" width="9.2" height="3" fill="url(#metal)"/>
+    <path d="M7.6 2 L9.4 2 L9.4 24 Q8.5 26.5 7.6 24 Z" fill="url(#metal)"/>
+    <rect x="0.6" y="2" width="8.8" height="9" rx="4" fill="url(#barrel)"/>
+  </g>
+</svg>

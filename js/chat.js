@@ -1,12 +1,12 @@
 // ============================================================
-// Chat widget — talks to portfolio-chat-worker on Cloudflare.
+// Chat widget, talks to portfolio-chat-worker on Cloudflare.
 // Reveals replies word-by-word (not real token streaming, but
 // visually the same effect) so it reads like a typed response
 // instead of dumping the whole answer in one go.
 // ============================================================
 
 const CHAT_WORKER_URL =
-  "https://portfolio-chat-worker.alternativeschool073.workers.dev";
+  "https://portfolio-chat-worker.techfacilitatorss.workers.dev";
 
 const chatToggle = document.getElementById("chatToggle");
 const chatPanel = document.getElementById("chatPanel");
@@ -25,7 +25,7 @@ function scrollMessagesToBottom() {
 function addMessageBubble(role, text) {
   const bubble = document.createElement("div");
   bubble.className = `chat-msg chat-msg--${role}`;
-  bubble.textContent = text; // FIX: this was missing — text was being silently discarded
+  bubble.textContent = text; // FIX: this was missing, text was being silently discarded
   chatMessages.appendChild(bubble);
   scrollMessagesToBottom();
   return bubble;
