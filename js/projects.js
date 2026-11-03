@@ -13,6 +13,19 @@
     });
   });
 
+  /* Show more: unfolds the extra detail in a card, and folds it back */
+  document.querySelectorAll(".show-more").forEach((btn) => {
+    const more = document.getElementById(btn.getAttribute("aria-controls"));
+    if (!more) return;
+    const closedLabel = btn.textContent;
+    btn.addEventListener("click", () => {
+      const open = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!open));
+      more.hidden = open;
+      btn.textContent = open ? closedLabel : "Show less";
+    });
+  });
+
   /* Links that only work from a date (a domain that is not live yet):
      the link stays hidden and its note shows until that date, then they swap. */
   function gate() {
