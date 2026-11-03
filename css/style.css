@@ -1177,11 +1177,76 @@ main {
    CV MATCH: wide Cardly card, bullet points, roadmap,
    experience bullets and sub-sections
    ============================================================ */
+/* Cards keep their own height, so one long card no longer
+   stretches the short ones beside it */
+.projects { align-items: start; }
+
+/* Cardly: full width, small logo beside the name, then two columns */
 .project-card--wide { grid-column: 1 / -1; }
-@media (min-width: 861px) {
-  .project-card--wide { flex-direction: row; }
-  .project-card--wide .project-card__img-wrap { flex: 0 0 240px; aspect-ratio: auto; }
+.project-card--wide .project-card__body { padding: 28px; gap: 0; }
+.card-head {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--border);
 }
+.card-head > div { display: flex; flex-direction: column; gap: 6px; }
+.card-logo {
+  flex: 0 0 64px;
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  background: #fff9ef;
+  border: 1px solid var(--border);
+}
+.card-logo img { width: 44px; height: 44px; object-fit: contain; }
+.card-cols {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  padding-top: 22px;
+}
+@media (min-width: 861px) {
+  .card-cols { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 40px; }
+  .card-side { padding-left: 32px; border-left: 1px solid var(--border); }
+}
+.card-side { display: flex; flex-direction: column; gap: 14px; }
+.card-side .roadmap { margin: 0; }
+/* In the side column the date sits under its line, so the text gets the width */
+.card-side .roadmap li { grid-template-columns: 32px 1fr; row-gap: 2px; }
+.card-side .roadmap li span:last-child { grid-column: 2; font-size: 0.78rem; color: var(--accent); }
+.card-side .roadmap li span.status--live { color: #2f8a4e; }
+.card-label {
+  margin: 0 !important;
+  flex: none !important;
+  font-size: 0.72rem !important;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim) !important;
+}
+
+/* Show more: extra detail stays folded until asked for */
+.card-more p { flex: none; }
+.card-more .points { margin-top: 0; }
+.card-more > p + .points { margin-top: 10px; }
+.show-more {
+  align-self: flex-start;
+  margin-top: 6px;
+  padding: 0 0 2px;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: none;
+  color: var(--accent);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.show-more:hover { color: var(--accent-soft); }
+.show-more:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .points {
   margin: 4px 0 0;
   padding-left: 18px;
