@@ -331,35 +331,55 @@
 
         <!-- 2026 -->
         <div class="projects year-panel" id="year-2026" role="tabpanel" aria-labelledby="tab-2026">
-          <article class="project-card project-card--logo project-card--wide">
-            <div class="project-card__img-wrap">
-              <img src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1791300815/cardly-logo-light_oeyglx.svg" alt="Cardly logo" loading="lazy" />
-            </div>
+          <article class="project-card project-card--wide">
             <div class="project-card__body">
-              <span class="status status--live">v1 Live</span>
-              <h3>Cardly</h3>
-              <p>AI academic reporting platform for Nigerian schools, built with a team of 6.</p>
-              <ul class="points">
-                <li><strong>Department guidance (AI):</strong> reads a JSS 3 student's full record (every term's results, the Mocks and behaviour ratings) and writes a personalised SS 1 department recommendation, Science, Art or Commercial, with the reasons and a parents' sign-off page. Cardly computes every figure; the AI writes the words.</li>
-                <li><strong>Cardly AI remarks:</strong> drafts a whole class's report card remarks in seconds, in the school's chosen tone (Gemini with Groq fallback, cached so the same scores always give the same draft); the principal reads, edits and keeps them in one tap.</li>
-                <li><strong>Result engine:</strong> score entry with submit, approve and send back; WAEC-modelled marking; CA, mid-term, end of term and Mock reports (SS 3 WAEC breakdown, JSS 3 combined subjects, Mock averages); promotion and a session rollover that moves every school up at once, keeping each child's class history.</li>
-                <li><strong>Results nobody can fake:</strong> every report card and transcript is sealed with an Ed25519-signed QR anyone can scan to verify; parents are told on WhatsApp and SMS the moment results are approved, with transcripts and result queries handled in-app.</li>
-                <li><strong>Built to scale:</strong> Next.js with Express / TypeScript / Prisma / PostgreSQL, real-time Socket.io sync across every role, background job queues, and an offline-first app on web, iOS and Android.</li>
-              </ul>
-              <ol class="roadmap">
-                <li><span>v1</span><span>Schools: AI academic reporting, sealed results, parents on WhatsApp</span><span class="status--live">Live</span></li>
-                <li><span>v2</span><span>Cardly for everyone: organisations and individuals seal their own documents with the same signed QR, so anyone can verify they are authentic</span><span>January 2027</span></li>
-                <li><span>v3</span><span>Tertiary institutions: courses, credit units, GPA and CGPA, sealed transcripts</span><span>April 2027</span></li>
-              </ol>
-              <ul class="tag-list tag-list--sm">
-                <li>Next.js</li>
-                <li>Express</li>
-                <li>TypeScript</li>
-                <li>Prisma</li>
-                <li>PostgreSQL</li>
-                <li>Socket.io</li>
-              </ul>
-              <a href="https://cardly.ng" target="_blank" rel="noopener">Visit cardly.ng →</a>
+              <!-- Header: small logo beside the name, no empty side column -->
+              <header class="card-head">
+                <span class="card-logo">
+                  <img src="https://res.cloudinary.com/dkrjrfqpy/image/upload/v1791300815/cardly-logo-light_oeyglx.svg" alt="Cardly logo" loading="lazy" />
+                </span>
+                <div>
+                  <span class="status status--live">v1 Live</span>
+                  <h3>Cardly</h3>
+                  <p>AI academic reporting platform for Nigerian schools, built with a team of 6.</p>
+                </div>
+              </header>
+
+              <!-- Desktop: features left, roadmap and stack right -->
+              <div class="card-cols">
+                <div>
+                  <ul class="points">
+                    <li><strong>Department guidance (AI):</strong> reads a JSS 3 student's full record (every term's results, the Mocks and behaviour ratings) and writes a personalised SS 1 department recommendation, Science, Art or Commercial, with the reasons and a parents' sign-off page. Cardly computes every figure; the AI writes the words.</li>
+                    <li><strong>Cardly AI remarks:</strong> drafts a whole class's report card remarks in seconds, in the school's chosen tone (Gemini with Groq fallback, cached so the same scores always give the same draft); the principal reads, edits and keeps them in one tap.</li>
+                    <li><strong>Result engine:</strong> score entry with submit, approve and send back; WAEC-modelled marking; CA, mid-term, end of term and Mock reports (SS 3 WAEC breakdown, JSS 3 combined subjects, Mock averages); promotion and a session rollover that moves every school up at once, keeping each child's class history.</li>
+                  </ul>
+                  <div class="card-more" id="more-cardly" hidden>
+                    <ul class="points">
+                      <li><strong>Results nobody can fake:</strong> every report card and transcript is sealed with an Ed25519-signed QR anyone can scan to verify; parents are told on WhatsApp and SMS the moment results are approved, with transcripts and result queries handled in-app.</li>
+                      <li><strong>Built to scale:</strong> Next.js with Express / TypeScript / Prisma / PostgreSQL, real-time Socket.io sync across every role, background job queues, and an offline-first app on web, iOS and Android.</li>
+                    </ul>
+                  </div>
+                  <button type="button" class="show-more" aria-expanded="false" aria-controls="more-cardly">Show 2 more features</button>
+                </div>
+
+                <div class="card-side">
+                  <p class="card-label">Roadmap</p>
+                  <ol class="roadmap">
+                    <li><span>v1</span><span>Schools: AI academic reporting, sealed results, parents on WhatsApp</span><span class="status--live">Live</span></li>
+                    <li><span>v2</span><span>Cardly for everyone: organisations and individuals seal their own documents with the same signed QR, so anyone can verify they are authentic</span><span>January 2027</span></li>
+                    <li><span>v3</span><span>Tertiary institutions: courses, credit units, GPA and CGPA, sealed transcripts</span><span>April 2027</span></li>
+                  </ol>
+                  <ul class="tag-list tag-list--sm">
+                    <li>Next.js</li>
+                    <li>Express</li>
+                    <li>TypeScript</li>
+                    <li>Prisma</li>
+                    <li>PostgreSQL</li>
+                    <li>Socket.io</li>
+                  </ul>
+                  <a href="https://cardly.ng" target="_blank" rel="noopener">Visit cardly.ng →</a>
+                </div>
+              </div>
             </div>
           </article>
 
@@ -371,19 +391,22 @@
               <span class="status">Early bird sales open 10 November 2026</span>
               <h3>The Laws of Ruin</h3>
               <p>Investigations into how powerful people rose, ruled and fell, for those who seek power and those who must keep it.</p>
-              <p>
-                A study, in the style of The 48 Laws of Power, of the decisions
-                that brought down kings, cartels and empires. It is written to
-                educate: to show, law by law, the tipping point where power
-                turns on the people who hold it. Investigation I, The Fall of
-                Kings, releases first; II, The Thrones, and III, The Soldiers,
-                follow.
-              </p>
-              <ul class="points">
-                <li><strong>Every law in 12 parts:</strong> the law, the judgment, the transgression, the interpretation, parallels, the cost, keys, the reversal, and The Record, which separates verified facts from disputed ones, with numbered sources.</li>
-                <li><strong>A reader built for it:</strong> an installable phone app with pages that turn like a real book, offline reading, and no PDF downloads, so the work stays protected.</li>
-                <li><strong>Ask the book:</strong> a RAG assistant answers questions about the text and cites the exact pages, with chips that jump straight to them.</li>
-              </ul>
+              <div class="card-more" id="more-ruin" hidden>
+                <p>
+                  A study, in the style of The 48 Laws of Power, of the decisions
+                  that brought down kings, cartels and empires. It is written to
+                  educate: to show, law by law, the tipping point where power
+                  turns on the people who hold it. Investigation I, The Fall of
+                  Kings, releases first; II, The Thrones, and III, The Soldiers,
+                  follow.
+                </p>
+                <ul class="points">
+                  <li><strong>Every law in 12 parts:</strong> the law, the judgment, the transgression, the interpretation, parallels, the cost, keys, the reversal, and The Record, which separates verified facts from disputed ones, with numbered sources.</li>
+                  <li><strong>A reader built for it:</strong> an installable phone app with pages that turn like a real book, offline reading, and no PDF downloads, so the work stays protected.</li>
+                  <li><strong>Ask the book:</strong> a RAG assistant answers questions about the text and cites the exact pages, with chips that jump straight to them.</li>
+                </ul>
+              </div>
+              <button type="button" class="show-more" aria-expanded="false" aria-controls="more-ruin">Show more</button>
               <ul class="tag-list tag-list--sm">
                 <li>Next.js</li>
                 <li>Express</li>
