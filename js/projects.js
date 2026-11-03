@@ -1,4 +1,4 @@
-/* Projects: year tabs and launch countdowns.
+/* Projects: year tabs, launch countdowns and date-gated links.
    Lives in js/projects.js, loaded after main.js and chat.js. */
 (function () {
   const tabs = document.querySelectorAll(".year-tab");
@@ -13,6 +13,18 @@
     });
   });
 
+  /* Links that only work from a date (a domain that is not live yet):
+     the link stays hidden and its note shows until that date, then they swap. */
+  function gate() {
+    const now = Date.now();
+    document.querySelectorAll("[data-live-from]").forEach((el) => {
+      el.hidden = now < Date.parse(el.dataset.liveFrom);
+    });
+    document.querySelectorAll("[data-before-live]").forEach((el) => {
+      el.hidden = now >= Date.parse(el.dataset.beforeLive);
+    });
+  }
+
   const clocks = document.querySelectorAll(".countdown[data-launch]");
   function tick() {
     const now = Date.now();
@@ -25,5 +37,8 @@
       el.textContent = `${d}d ${h}h ${m}m to go`;
     });
   }
-  if (clocks.length) { tick(); setInterval(tick, 30000); }
+
+  gate();
+  if (clocks.length) tick();
+  setInterval(() => { gate(); if (clocks.length) tick(); }, 30000);
 })();
