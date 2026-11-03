@@ -1172,3 +1172,64 @@ main {
 }
 .project-card--logo .project-card__img-wrap--dark { background: #15110d; }
 .project-card--masked h3 { letter-spacing: 0.2em; color: var(--text-dim); }
+
+/* ============================================================
+   CV MATCH: wide Cardly card, bullet points, roadmap,
+   experience bullets and sub-sections
+   ============================================================ */
+.project-card--wide { grid-column: 1 / -1; }
+@media (min-width: 861px) {
+  .project-card--wide { flex-direction: row; }
+  .project-card--wide .project-card__img-wrap { flex: 0 0 240px; aspect-ratio: auto; }
+}
+.points {
+  margin: 4px 0 0;
+  padding-left: 18px;
+  color: var(--text-muted);
+  font-size: 0.86rem;
+}
+.points li { margin-bottom: 6px; }
+.points strong { color: var(--text); font-weight: 600; }
+.roadmap {
+  list-style: none;
+  margin: 8px 0 4px;
+  padding: 0;
+  border-top: 1px solid var(--border);
+}
+.roadmap li {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+.roadmap li span:first-child { font-weight: 600; color: var(--accent); }
+.roadmap li span:last-child { font-weight: 600; color: var(--text); white-space: nowrap; }
+.roadmap li span.status--live { color: #2f8a4e; }
+@media (max-width: 560px) {
+  .roadmap li { grid-template-columns: 32px 1fr; }
+  .roadmap li span:last-child { grid-column: 2; }
+}
+.timeline__body .sub {
+  margin: 0 0 6px;
+  font-style: italic;
+  color: var(--text-dim);
+  font-size: 0.82rem;
+}
+.timeline__body ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+.timeline__body ul li { margin-bottom: 4px; }
+.subsection__title {
+  margin: 48px 0 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
