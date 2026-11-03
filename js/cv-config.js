@@ -8,7 +8,7 @@
    Left empty, the /cv page shows "CV link coming soon".
    ============================================================ */
 
-const CV_URL = ""; // <-- PUT YOUR CV DOWNLOAD LINK BETWEEN THESE QUOTES
+const CV_URL = "https://drive.google.com/file/d/1xugNKgDa2ND-THldbmCQD_hvRt3k3Q2F/view?usp=drive_link"; // <-- PUT YOUR CV DOWNLOAD LINK BETWEEN THESE QUOTES
 
 /* File name the browser saves it as (works for links on this same site). */
 const CV_FILE_NAME = "Victor_Ajayi_Software_Engineer_Go_Node_React.pdf";
